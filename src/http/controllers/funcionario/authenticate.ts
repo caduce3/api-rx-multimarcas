@@ -29,7 +29,25 @@ export async function authenticateFuncionario(request: FastifyRequest, reply: Fa
             }
         )
 
-        return reply.status(200).send({token})
+        const refreshToken = await reply.jwtSign(
+            {}, 
+            {
+            sign: {
+                sub: funcionario.id,
+                expiresIn: '1d'
+            }
+            }
+        )
+
+        return reply
+            .setCookie('refreshToken', refreshToken, {
+                path: '/',
+                secure: true,
+                sameSite: true,
+                httpOnly: true
+            })
+            .status(200)
+            .send({token})
 
     } catch (error) {
         if(

@@ -18,6 +18,12 @@ enum Status {
   INATIVO
 }
 
+enum Cargos {
+  PROPRIETARIO
+  ADMINISTRADOR
+  COLABORADOR
+}
+
 model Funcionario {
   id       String     @id @default(uuid())
   nome     String
@@ -26,6 +32,7 @@ model Funcionario {
   cpf      String     @unique
   senha    String
   status   Status     @default(INATIVO)
+  cargo    Cargos     @default(COLABORADOR)
   Carrinho Carrinho[]
 }
 

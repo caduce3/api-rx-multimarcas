@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "Cargos" AS ENUM ('PROPRIETARIO', 'ADMINISTRADOR', 'COLABORADOR');
+
+-- AlterTable
+ALTER TABLE "Funcionario" ADD COLUMN     "cargo" "Cargos" NOT NULL DEFAULT 'COLABORADOR';

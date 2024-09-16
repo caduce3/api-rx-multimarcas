@@ -6,10 +6,13 @@ import { getProfile } from "./funcionario/profile";
 import { atualizarFuncionario } from "./funcionario/atualizar-funcionario";
 import { getFuncionarios } from "./funcionario/pegar-funcionarios";
 import { getUnicoFuncionario } from "./funcionario/pegar-unico-funcionario";
+import { refresh } from "./funcionario/refresh";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
     app.post('/sessions', authenticateFuncionario)
+
+    app.patch('/token/refresh', refresh)
 
     //precisa estar autenticado para acessar
     
