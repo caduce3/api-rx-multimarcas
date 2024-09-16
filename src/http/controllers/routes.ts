@@ -5,6 +5,7 @@ import { verifyJwt } from "../middlewares/verify-jwt";
 import { getProfile } from "./funcionario/profile";
 import { atualizarFuncionario } from "./funcionario/atualizar-funcionario";
 import { getFuncionarios } from "./funcionario/pegar-funcionarios";
+import { getUnicoFuncionario } from "./funcionario/pegar-unico-funcionario";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -16,6 +17,7 @@ export async function appRoutes(app: FastifyInstance) {
     app.get('/me', { onRequest: [verifyJwt] }, getProfile);
     app.put('/atualizar_funcionario', { onRequest: [verifyJwt] }, atualizarFuncionario);
     app.post('/pegar_funcionarios', { onRequest: [verifyJwt] }, getFuncionarios)
+    app.get('/pegar_unico_funcionario/:id', { onRequest: [verifyJwt] }, getUnicoFuncionario)
 
 
 }
