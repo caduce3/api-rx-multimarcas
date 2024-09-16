@@ -1,5 +1,5 @@
 import { Prisma, Wallet } from '@prisma/client'
-import { WalletRepository } from '../wallet-repository'
+import { WalletRepository } from '../produto-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaWalletRepository implements WalletRepository {

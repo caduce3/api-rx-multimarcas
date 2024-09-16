@@ -1,5 +1,5 @@
 import { PrismaPlayersRepository } from "@/repositories/prisma/prisma-players-repository";
-import { AddPlayerUseCase } from "@/use-cases/player/add-player";
+import { AddPlayerUseCase } from "@/use-cases/clientes/add-player";
 
 export function makeAddPlayerUseCase(){
     const playersRepository = new PrismaPlayersRepository()
