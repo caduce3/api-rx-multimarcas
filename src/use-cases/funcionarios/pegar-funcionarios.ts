@@ -5,8 +5,8 @@ import { ErroAoCarregarPagina } from "../@errors/erro-carregar-pagina";
 
 interface pegarFuncionariosUseCaseRequest {
     page: number;
-    name?: string;
-    tell?: string;
+    nome?: string;
+    telefone?: string;
     email?: string;
     cpf?: string;
 }
@@ -24,13 +24,13 @@ export class PegarFuncionariosUseCase {
     ) {}
     
     async execute({
-        page, name, tell, email, cpf
+        page, nome, telefone, email, cpf
     }: pegarFuncionariosUseCaseRequest): Promise<pegarFuncionariosUseCaseResponse> {
 
         if (page <= 0) page = 1;
 
         const take = 10;
-        const { funcionarios, totalCount } = await this.funcionarioRepository.pegarFuncionarios(take, page, name, tell, email, cpf);
+        const { funcionarios, totalCount } = await this.funcionarioRepository.pegarFuncionarios(take, page, nome, telefone, email, cpf);
 
         if (!funcionarios || funcionarios.length === 0) {
             return {
