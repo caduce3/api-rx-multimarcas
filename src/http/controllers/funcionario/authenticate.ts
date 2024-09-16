@@ -21,7 +21,9 @@ export async function authenticateFuncionario(request: FastifyRequest, reply: Fa
         })
 
         const token = await reply.jwtSign(
-            {}, 
+            {
+                role: funcionario.cargo
+            }, 
             {
             sign: {
                 sub: funcionario.id
@@ -30,7 +32,9 @@ export async function authenticateFuncionario(request: FastifyRequest, reply: Fa
         )
 
         const refreshToken = await reply.jwtSign(
-            {}, 
+            {
+                role: funcionario.cargo
+            }, 
             {
             sign: {
                 sub: funcionario.id,
