@@ -107,4 +107,14 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
             totalCount
         };
     }
+
+    async pegarUnicoFuncionario(id: string): Promise<Funcionario | null> {
+        const funcionario = await prisma.funcionario.findUnique({
+            where: {
+                id
+            }
+        })
+
+        return funcionario
+    }
 }

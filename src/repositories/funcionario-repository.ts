@@ -11,4 +11,5 @@ export interface FuncionarioRepository {
             Carrinho: true
         }
     }>[]; totalCount: number, }>
+    pegarUnicoFuncionario(id: string): Promise<Funcionario | null>
 }
