@@ -1,5 +1,5 @@
-import { Prisma, Wallet } from '@prisma/client'
+import { Prisma, Produtos } from '@prisma/client'
 
-export interface WalletRepository {
-    createWallet(data: Prisma.WalletCreateInput): Promise<Wallet>
+export interface ProdutoRepository {
+    
 }

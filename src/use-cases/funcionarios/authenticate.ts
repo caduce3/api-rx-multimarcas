@@ -1,35 +1,34 @@
-import { UsersRepository } from "@/repositories/funcionario-repository";
+import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { compare, hash } from "bcryptjs";
-import { UserAlreadyExistsError } from "../@errors/user-already-exists";
-import { User } from "@prisma/client";
+import { Funcionario } from "@prisma/client";
 import { InvalidCredentialsError } from "../@errors/invalid-credentials-error";
-import { UserInactive } from "../@errors/user-inactive";
+import { FuncionarioInativo } from "../@errors/funcionario-inativo";
 
-interface AuthenticateUserRequest {
+interface AuthenticateFuncionarioRequest {
     email: string;
-    password: string;
+    senha: string;
 }
 
-interface AuthenticateUserResponse {
-    user: User
+interface AuthenticateFuncionarioResponse {
+    funcionario: Funcionario
 }
 
-export class AuthenticateUserUseCase {
-    constructor(private usersRepository: UsersRepository) {}
+export class AuthenticateFuncionarioUseCase {
+    constructor(private funcionarioRepository: FuncionarioRepository) {}
 
-    async execute ({ email, password }: AuthenticateUserRequest): Promise<AuthenticateUserResponse> {
+    async execute ({ email, senha }: AuthenticateFuncionarioRequest): Promise<AuthenticateFuncionarioResponse> {
 
-        const user = await this.usersRepository.findByEmail(email)
+        const funcionario = await this.funcionarioRepository.findByEmail(email)
     
-        if(!user) throw new InvalidCredentialsError()
-        if(user.status === "INACTIVE") throw new UserInactive()
+        if(!funcionario) throw new InvalidCredentialsError()
+        if(funcionario.status === "INATIVO") throw new FuncionarioInativo()
         
-        const doesPasswordMatches = await compare(password, user.password)
+        const doesPasswordMatches = await compare(senha, funcionario.senha)
 
         if(!doesPasswordMatches) throw new InvalidCredentialsError()
         
         return {
-            user
+            funcionario
         }
     }
 }

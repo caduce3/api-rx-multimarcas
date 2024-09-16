@@ -1,30 +1,30 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { InvalidCredentialsError } from "@/use-cases/@errors/invalid-credentials-error";
-import { UserInactive } from "@/use-cases/@errors/user-inactive";
-import { makeAuthenticateUserUseCase } from "@/factories/user/make-authenticate-user-use-case";
+import { FuncionarioInativo } from "@/use-cases/@errors/funcionario-inativo";
+import { makeAuthenticateFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-authenticate-funcionario-use-case";
 
-export async function authenticateUser(request: FastifyRequest, reply: FastifyReply) {
-    const authenticateUserBodySchema = z.object({
+export async function authenticateFuncionario(request: FastifyRequest, reply: FastifyReply) {
+    const authenticateFuncionarioBodySchema = z.object({
         email: z.string().email(),
-        password: z.string().min(6)
+        senha: z.string().min(6)
     })
 
-    const { email, password } = authenticateUserBodySchema.parse(request.body)
+    const { email, senha } = authenticateFuncionarioBodySchema.parse(request.body)
 
     try {
-        const authenticateUserUseCase = makeAuthenticateUserUseCase()
+        const authenticateFuncionarioUseCase = makeAuthenticateFuncionarioUseCase()
 
-        const { user } = await authenticateUserUseCase.execute({
+        const { funcionario } = await authenticateFuncionarioUseCase.execute({
             email,
-            password
+            senha
         })
 
         const token = await reply.jwtSign(
             {}, 
             {
             sign: {
-                sub: user.id
+                sub: funcionario.id
             }
             }
         )
@@ -34,7 +34,7 @@ export async function authenticateUser(request: FastifyRequest, reply: FastifyRe
     } catch (error) {
         if(
                error instanceof InvalidCredentialsError 
-            || error instanceof UserInactive) {
+            || error instanceof FuncionarioInativo) {
         
             return reply.status(409).send({message: error.message})
         }

@@ -1,6 +1,6 @@
-import { Prisma, User } from '@prisma/client'
+import { Prisma, Funcionario } from '@prisma/client'
 
-export interface UsersRepository {
-    create(data: Prisma.UserCreateInput): Promise<User>
-    findByEmail(email: string): Promise<User | null>
+export interface FuncionarioRepository {
+    createFuncionario(data: Prisma.FuncionarioCreateInput): Promise<Funcionario>
+    findByEmail(email: string): Promise<Funcionario | null>
 }

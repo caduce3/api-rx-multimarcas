@@ -1,7 +1,6 @@
-import { Prisma, Player } from '@prisma/client'
+import { Prisma, Clientes } from '@prisma/client'
 
-export interface PlayersRepository {
-    createPlayer(data: Prisma.PlayerCreateInput): Promise<Player>
-    findByIdPlatform(id_platform: number): Promise<Player | null>
-    findByEmail(email: string): Promise<Player | null>
+export interface ClientesRepository {
+    createCliente(data: Prisma.ClientesCreateInput): Promise<Clientes>
+    findByEmail(email: string): Promise<Clientes | null>
 }
