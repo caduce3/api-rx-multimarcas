@@ -19,14 +19,14 @@ enum Status {
 }
 
 model Funcionario {
-  id       String   @id @default(uuid())
+  id       String     @id @default(uuid())
   nome     String
-  email    String   @unique
+  email    String     @unique
   telefone String
-  cpf      String   @unique
+  cpf      String     @unique
   senha    String
-  status   Status   @default(INATIVO)
-  Vendas   Vendas[]
+  status   Status     @default(INATIVO)
+  Carrinho Carrinho[]
 }
 
 model Clientes {
@@ -39,8 +39,8 @@ model Clientes {
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 
-  Endereco Endereco @relation(fields: [enderecoId], references: [id])
-  Vendas   Vendas[]
+  Endereco Endereco   @relation(fields: [enderecoId], references: [id])
+  Carrinho Carrinho[]
 }
 
 model Endereco {
@@ -57,7 +57,7 @@ model Endereco {
   Clientes Clientes[]
 }
 
-model Vendas {
+model Carrinho {
   id            String   @id @default(uuid())
   clienteId     String
   funcionarioId String
@@ -65,21 +65,21 @@ model Vendas {
   dateCreated   DateTime @default(now())
   dateUpdated   DateTime @updatedAt
 
-  Clientes       Clientes         @relation(fields: [clienteId], references: [id])
-  Funcionario    Funcionario      @relation(fields: [funcionarioId], references: [id])
-  VendasProdutos VendasProdutos[]
+  Clientes     Clientes       @relation(fields: [clienteId], references: [id])
+  Funcionario  Funcionario    @relation(fields: [funcionarioId], references: [id])
+  ItemCarrinho ItemCarrinho[]
 }
 
-model VendasProdutos {
+model ItemCarrinho {
   id            String   @id @default(uuid())
-  vendaId       String
+  carrinhoId    String
   produtoId     String
   quantidade    Int
   precoUnitario Float
   dateCreated   DateTime @default(now())
   dateUpdated   DateTime @updatedAt
 
-  Vendas   Vendas   @relation(fields: [vendaId], references: [id])
+  Carrinho Carrinho @relation(fields: [carrinhoId], references: [id])
   Produtos Produtos @relation(fields: [produtoId], references: [id])
 }
 
@@ -92,5 +92,5 @@ model Produtos {
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 
-  VendasProdutos VendasProdutos[]
+  ItemCarrinho ItemCarrinho[]
 }

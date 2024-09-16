@@ -6,4 +6,9 @@ export interface FuncionarioRepository {
     findById(id: string): Promise<Funcionario | null>
     deletarFuncionario(id: string): Promise<boolean>
     atualizarFuncionario(id: string, data: Prisma.FuncionarioUncheckedUpdateInput ): Promise<Funcionario>
+    pegarFuncionarios(take: number, page: number, nome?: string, telefone?: string, email?: string, cpf?: string): Promise<{ funcionarios: Prisma.FuncionarioGetPayload<{
+        include: {
+            Vendas: true
+        }
+    }>[]; totalCount: number, }>
 }

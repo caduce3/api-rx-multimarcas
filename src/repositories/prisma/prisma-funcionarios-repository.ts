@@ -56,4 +56,55 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
 
         return funcionario
     }
+
+    async pegarFuncionarios(
+        take: number, 
+        page: number, 
+        nome?: string, 
+        telefone?: string, 
+        email?: string, 
+        cpf?: string
+    ): Promise<{ 
+        funcionarios: Prisma.FuncionarioGetPayload<{
+            include: {
+                Vendas: true
+            }
+        }>[], 
+        totalCount: number 
+    }> {
+    
+        const skip = (page - 1) * take;
+    
+        // Construindo as condições dinamicamente
+        const conditions: Prisma.FuncionarioWhereInput[] = [];
+    
+        if (nome) conditions.push({ nome: { contains: nome, mode: 'insensitive' } });
+        if (telefone)  conditions.push({ telefone: { contains: telefone, mode: 'insensitive' } });    
+        if (email)  conditions.push({ email: { contains: email, mode: 'insensitive' } });
+        if (cpf) conditions.push({ cpf: { contains: cpf, mode: 'insensitive' } });
+        
+        // Garantindo que só passemos o AND se tivermos condições
+        const whereClause: Prisma.FuncionarioWhereInput = conditions.length > 0 ? { AND: conditions } : {};
+    
+        const totalCount = await prisma.funcionario.count({
+            where: whereClause
+        });
+    
+        const funcionarios = await prisma.funcionario.findMany({
+            where: whereClause,
+            orderBy: {
+                nome: 'asc'
+            },
+            include: {
+                Vendas: true
+            },
+            take,
+            skip,
+        });
+    
+        return {
+            funcionarios,
+            totalCount
+        };
+    }
 }
