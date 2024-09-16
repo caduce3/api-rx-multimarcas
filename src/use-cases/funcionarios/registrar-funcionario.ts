@@ -27,16 +27,12 @@ export class RegisterFuncionarioUseCase {
         const funcionarioJaExiste = await this.funcionarioRepository.findByEmail(email)
     
         if(funcionarioJaExiste) throw new FuncionarioAlreadyExistsError()
-
-        const emailFormatado = email.trim().toLowerCase()
-        const telefoneFormatadoValidado = validarEFormatarTelefone(telefone)
-        const cpfFormatadoValidado = validarFormatarCPF(cpf)
     
         const funcionario = await this.funcionarioRepository.createFuncionario({
             nome,
-            email: emailFormatado,
-            telefone: telefoneFormatadoValidado,
-            cpf: cpfFormatadoValidado,
+            email: email.trim().toLowerCase(),
+            telefone: validarEFormatarTelefone(telefone),
+            cpf: validarFormatarCPF(cpf),
             senha: senha_hash
         })
 
