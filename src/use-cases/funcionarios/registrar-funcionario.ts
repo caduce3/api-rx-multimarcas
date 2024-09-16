@@ -2,6 +2,8 @@ import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { hash } from "bcryptjs";
 import { FuncionarioAlreadyExistsError } from "../@errors/funcionario-ja-existe";
 import { Funcionario } from "@prisma/client";
+import { validarEFormatarTelefone } from "@/services/formatar-telefone";
+import { validarFormatarCPF } from "@/services/formatar-cpf";
 
 interface RegisterFuncionarioRequest {
     nome: string;
@@ -25,12 +27,16 @@ export class RegisterFuncionarioUseCase {
         const funcionarioJaExiste = await this.funcionarioRepository.findByEmail(email)
     
         if(funcionarioJaExiste) throw new FuncionarioAlreadyExistsError()
+
+        const emailFormatado = email.trim().toLowerCase()
+        const telefoneFormatadoValidado = validarEFormatarTelefone(telefone)
+        const cpfFormatadoValidado = validarFormatarCPF(cpf)
     
         const funcionario = await this.funcionarioRepository.createFuncionario({
             nome,
-            email,
-            telefone,
-            cpf,
+            email: emailFormatado,
+            telefone: telefoneFormatadoValidado,
+            cpf: cpfFormatadoValidado,
             senha: senha_hash
         })
 
