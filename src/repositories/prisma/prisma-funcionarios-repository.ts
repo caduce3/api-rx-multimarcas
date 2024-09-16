@@ -67,7 +67,7 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
     ): Promise<{ 
         funcionarios: Prisma.FuncionarioGetPayload<{
             include: {
-                Vendas: true
+                Carrinho: true
             }
         }>[], 
         totalCount: number 
@@ -96,7 +96,7 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
                 nome: 'asc'
             },
             include: {
-                Vendas: true
+                Carrinho: true
             },
             take,
             skip,
