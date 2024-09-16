@@ -1,10 +1,10 @@
 import { PlayersRepository } from "@/repositories/players-repository";
 import { WalletRepository } from "@/repositories/wallet-repository";
 import { Player } from "@prisma/client";
-import { PlayerAlreadyExistsError } from "../errors/player-already-exists";
-import { ErrorCreatingPlayer } from "../errors/player-error-creating";
+import { PlayerAlreadyExistsError } from "../@errors/player-already-exists";
+import { ErrorCreatingPlayer } from "../@errors/player-error-creating";
 import { UsersRepository } from "@/repositories/users-repository";
-import { UserAlreadyExistsError } from "../errors/user-already-exists";
+import { UserAlreadyExistsError } from "../@errors/user-already-exists";
 
 interface AddPlayerRequest {
     id_platform: number;

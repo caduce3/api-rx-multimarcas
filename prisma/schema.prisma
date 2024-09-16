@@ -14,56 +14,83 @@ datasource db {
 }
 
 enum Status {
-  ACTIVE
-  INACTIVE
+  ATIVO
+  INATIVO
 }
 
-enum Sectores {
-  RISCO
-  FINANCEIRO
-  AFILIADOS
-  GERENCIAL
-  TRAFEGO
-  USER
-  DESENVOLVIMENTO
+model Funcionario {
+  id       String   @id @default(uuid())
+  nome     String
+  email    String   @unique
+  telefone String
+  cpf      String   @unique
+  senha    String
+  status   Status   @default(INATIVO)
+  Vendas   Vendas[]
 }
 
-model User {
-  id           String   @id @default(uuid())
-  name         String
-  gender       String
-  email        String   @unique
-  password     String
-  status       Status   @default(INACTIVE)
-  date_created DateTime @default(now())
-  sector       Sectores @default(USER)
+model Clientes {
+  id          String   @id @default(uuid())
+  nome        String
+  email       String   @unique
+  telefone    String
+  cpf         String   @unique
+  enderecoId  String
+  dateCreated DateTime @default(now())
+  dateUpdated DateTime @updatedAt
 
-  @@map("users")
+  Endereco Endereco @relation(fields: [enderecoId], references: [id])
+  Vendas   Vendas[]
 }
 
-model Player {
-  id                        String    @id @default(uuid())
-  id_platform               Int       @unique
-  name                      String
-  tell                      String
-  email                     String    @unique
-  date_created              DateTime
-  date_birth                DateTime?
-  platform_regitration_date DateTime?
-  Wallet                    Wallet?
+model Endereco {
+  id          String   @id @default(uuid())
+  rua         String
+  numero      String
+  bairro      String
+  cidade      String
+  estado      String
+  cep         String
+  dateCreated DateTime @default(now())
+  dateUpdated DateTime @updatedAt
 
-  @@map("players")
+  Clientes Clientes[]
 }
 
-model Wallet {
-  id                   String   @id @default(uuid())
-  id_player            String   @unique
-  ftd_value            Float
-  ftd_date             DateTime?
-  qtd_deposits         Int
-  total_deposit_amount Float
-  total_withdrawals    Float
-  qtd_withdrawals      Int
+model Vendas {
+  id            String   @id @default(uuid())
+  clienteId     String
+  funcionarioId String
+  valorTotal    Float
+  dateCreated   DateTime @default(now())
+  dateUpdated   DateTime @updatedAt
 
-  player Player @relation(fields: [id_player], references: [id])
+  Clientes       Clientes         @relation(fields: [clienteId], references: [id])
+  Funcionario    Funcionario      @relation(fields: [funcionarioId], references: [id])
+  VendasProdutos VendasProdutos[]
+}
+
+model VendasProdutos {
+  id            String   @id @default(uuid())
+  vendaId       String
+  produtoId     String
+  quantidade    Int
+  precoUnitario Float
+  dateCreated   DateTime @default(now())
+  dateUpdated   DateTime @updatedAt
+
+  Vendas   Vendas   @relation(fields: [vendaId], references: [id])
+  Produtos Produtos @relation(fields: [produtoId], references: [id])
+}
+
+model Produtos {
+  id          String   @id @default(uuid())
+  nome        String
+  descricao   String
+  preco       Float
+  quantidade  Int
+  dateCreated DateTime @default(now())
+  dateUpdated DateTime @updatedAt
+
+  VendasProdutos VendasProdutos[]
 }
