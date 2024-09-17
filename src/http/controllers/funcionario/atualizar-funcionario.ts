@@ -12,6 +12,8 @@ export async function atualizarFuncionario(request: FastifyRequest, reply: Fasti
         email: z.string().email().optional(),
         cpf: z.string().min(11).max(11).optional(),
         telefone: z.string().min(10).max(11).optional(),
+        status: z.enum(["ATIVO", "INATIVO"]).optional(),
+        cargo: z.enum(["PROPRIETARIO", "ADMINISTRADOR", "COLABORADOR"]).optional()
 
     })
 

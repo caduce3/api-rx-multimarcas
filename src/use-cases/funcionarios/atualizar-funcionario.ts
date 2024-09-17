@@ -11,6 +11,8 @@ interface AtualizarFuncionarioRequest {
     email?: string;
     telefone?: string;
     cpf?: string;
+    status?: "ATIVO" | "INATIVO";
+    cargo?: "PROPRIETARIO" | "ADMINISTRADOR" | "COLABORADOR";
 }
 
 interface AtualizarFuncionarioResponse {
@@ -20,7 +22,7 @@ interface AtualizarFuncionarioResponse {
 export class AtualizarFuncionarioUseCase {
     constructor(private funcionarioRepository: FuncionarioRepository) {}
 
-    async execute ({ id, nome, email, telefone, cpf }: AtualizarFuncionarioRequest): Promise<AtualizarFuncionarioResponse> {
+    async execute ({ id, nome, email, telefone, cpf, status, cargo }: AtualizarFuncionarioRequest): Promise<AtualizarFuncionarioResponse> {
 
         const funcionario = await this.funcionarioRepository.findById(id)
         if(!funcionario) throw new FuncionarioNaoExiste()
@@ -29,7 +31,9 @@ export class AtualizarFuncionarioUseCase {
             nome,
             email: email ? email.trim().toLowerCase() : funcionario.email,
             telefone: telefone ? validarEFormatarTelefone(telefone) : funcionario.telefone,
-            cpf: cpf ? validarFormatarCPF(cpf) : funcionario.cpf
+            cpf: cpf ? validarFormatarCPF(cpf) : funcionario.cpf,
+            status,
+            cargo
         })
 
         if(!atualizarFuncionario) throw new ErroAoAtualizarFuncionario()

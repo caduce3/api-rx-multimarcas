@@ -22,23 +22,24 @@ export async function authenticateFuncionario(request: FastifyRequest, reply: Fa
 
         const token = await reply.jwtSign(
             {
-                role: funcionario.cargo
+                cargo: funcionario.cargo
             }, 
             {
             sign: {
-                sub: funcionario.id
+                sub: funcionario.id,
+                expiresIn: '24h'
             }
             }
         )
 
         const refreshToken = await reply.jwtSign(
             {
-                role: funcionario.cargo
+                cargo: funcionario.cargo
             }, 
             {
             sign: {
                 sub: funcionario.id,
-                expiresIn: '1d'
+                expiresIn: '7d'
             }
             }
         )

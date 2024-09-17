@@ -60,7 +60,9 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
                 nome: data.nome,
                 email: data.email,
                 telefone: data.telefone,
-                cpf: data.cpf
+                cpf: data.cpf,
+                status: data.status,
+                cargo: data.cargo
             }
         })
 

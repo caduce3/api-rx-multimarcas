@@ -10,7 +10,8 @@ export async function refresh(request: FastifyRequest, reply: FastifyReply) {
         { cargo }, 
         {
         sign: {
-            sub: request.user.sub
+            sub: request.user.sub,
+            expiresIn: '24h'
         }
         }
     )
@@ -20,7 +21,7 @@ export async function refresh(request: FastifyRequest, reply: FastifyReply) {
         {
         sign: {
             sub: request.user.sub,
-            expiresIn: '1d'
+            expiresIn: '7d'
         }
         }
     )
