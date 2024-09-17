@@ -4,6 +4,7 @@ import { Funcionario } from "@prisma/client";
 import { ErroAoAtualizarFuncionario } from "../@errors/funcionario-erro-atualizar";
 import { validarFormatarCPF } from "@/services/formatar-cpf";
 import { validarEFormatarTelefone } from "@/services/formatar-telefone";
+import { FuncionarioAlreadyExistsError } from "../@errors/funcionario-ja-existe";
 
 interface AtualizarFuncionarioRequest {
     id: string;
@@ -26,6 +27,11 @@ export class AtualizarFuncionarioUseCase {
 
         const funcionario = await this.funcionarioRepository.findById(id)
         if(!funcionario) throw new FuncionarioNaoExiste()
+        
+        if(cpf != funcionario.cpf) {
+            const verifyCpf = await this.funcionarioRepository.findByCpf(funcionario.cpf)
+            if(verifyCpf) throw new FuncionarioAlreadyExistsError()
+        }
     
         const atualizarFuncionario = await this.funcionarioRepository.atualizarFuncionario(id, {
             nome,
