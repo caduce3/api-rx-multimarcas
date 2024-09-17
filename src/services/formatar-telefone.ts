@@ -1,16 +1,19 @@
+import { DddInvalido } from "@/use-cases/@errors/erro-ddd-invalido";
+import { TelefoneDeveConterOzeDigitos } from "@/use-cases/@errors/erro-telefone-deve-ter-11-digitos";
+
 export function validarEFormatarTelefone(telefone: string): string {
     // Remove qualquer caractere que não seja número
     telefone = telefone.replace(/\D/g, '');
 
     // Verifica se o telefone tem 10 ou 11 dígitos (com ou sem DDD)
     if (telefone.length !== 10 && telefone.length !== 11) {
-        throw new Error('Telefone inválido. Deve conter 10 ou 11 dígitos.');
+        throw new TelefoneDeveConterOzeDigitos();
     }
 
     // Verifica se o número começa com um DDD válido (considerando os DDDs comuns no Brasil)
     const dddValido = validarDDD(telefone.substring(0, 2));
     if (!dddValido) {
-        throw new Error('DDD inválido.');
+        throw new DddInvalido();
     }
 
     // Formata o telefone no padrão (##) #####-####

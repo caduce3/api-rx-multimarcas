@@ -21,6 +21,16 @@ export class PrismaFuncionarioRepository implements FuncionarioRepository {
         return funcionario
     }
 
+    async findByCpf(cpf: string): Promise<Funcionario | null> {
+        const funcionario = await prisma.funcionario.findUnique({
+            where: {
+                cpf
+            }
+        })
+
+        return funcionario
+    }
+
     async findById(id: string): Promise<Funcionario | null> {
         const funcionario = await prisma.funcionario.findUnique({
             where: {

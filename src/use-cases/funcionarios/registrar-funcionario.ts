@@ -24,9 +24,10 @@ export class RegisterFuncionarioUseCase {
 
         const senha_hash = await hash(senha, 6)
 
-        const funcionarioJaExiste = await this.funcionarioRepository.findByEmail(email)
-    
-        if(funcionarioJaExiste) throw new FuncionarioAlreadyExistsError()
+        const funcionarioJaExisteEmail = await this.funcionarioRepository.findByEmail(email.trim().toLowerCase())
+        const funcionarioJaExisteCpf= await this.funcionarioRepository.findByCpf(cpf)
+        
+        if(funcionarioJaExisteEmail || funcionarioJaExisteCpf) throw new FuncionarioAlreadyExistsError()
     
         const funcionario = await this.funcionarioRepository.createFuncionario({
             nome,

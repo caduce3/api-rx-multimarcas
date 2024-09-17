@@ -1,17 +1,20 @@
+import { CpfDeveConterOzeDigitos } from "@/use-cases/@errors/erro-cpf-deve-ter-11-digitos";
+import { CpfInvalido } from "@/use-cases/@errors/erro-cpf-inválido";
+
 export function validarFormatarCPF(cpf: string): string {
     // Remove qualquer caractere que não seja número
     cpf = cpf.replace(/\D/g, '');
 
     // Verifica se o CPF tem 11 dígitos
     if (cpf.length !== 11) {
-        throw new Error('CPF inválido. Deve conter 11 dígitos.');
+        throw new CpfDeveConterOzeDigitos();
     }
 
     // Validação dos dígitos verificadores do CPF
     const isCPFValid = validarCPF(cpf);
 
     if (!isCPFValid) {
-        throw new Error('CPF inválido.');
+        throw new CpfInvalido();
     }
 
     // Formata o CPF no padrão ###.###.###-##

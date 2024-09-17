@@ -28,7 +28,7 @@ model Funcionario {
   id       String     @id @default(uuid())
   nome     String
   email    String     @unique
-  telefone String
+  telefone String 
   cpf      String     @unique
   senha    String
   status   Status     @default(INATIVO)
