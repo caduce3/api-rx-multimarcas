@@ -28,7 +28,7 @@ model Funcionario {
   id       String     @id @default(uuid())
   nome     String
   email    String     @unique
-  telefone String 
+  telefone String
   cpf      String     @unique
   senha    String
   status   Status     @default(INATIVO)
@@ -42,11 +42,11 @@ model Clientes {
   email       String   @unique
   telefone    String
   cpf         String   @unique
-  enderecoId  String
+  enderecoId  String?
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 
-  Endereco Endereco   @relation(fields: [enderecoId], references: [id])
+  Endereco Endereco?  @relation(fields: [enderecoId], references: [id])
   Carrinho Carrinho[]
 }
 
