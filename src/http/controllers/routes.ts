@@ -10,6 +10,7 @@ import { refresh } from "./funcionario/refresh";
 import { verificarCargo } from "../middlewares/verificar-cargo";
 import { registrarCliente } from "./cliente/registrar-cliente";
 import { deletarCliente } from "./cliente/deletar-cliente";
+import { deletarFuncionario } from "./funcionario/deletar-funcionario";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -21,9 +22,10 @@ export async function appRoutes(app: FastifyInstance) {
     
     //ROTAS DE FUNCIONÁRIOS
     app.get('/me', { onRequest: [verifyJwt] }, getProfile);
-    app.put('/atualizar_funcionario', { onRequest: [verifyJwt, verificarCargo('ADMINISTRADOR')]}, atualizarFuncionario);
+    app.put('/atualizar_funcionario', { onRequest: [verifyJwt, verificarCargo(['ADMINISTRADOR', 'PROPRIETARIO'])]}, atualizarFuncionario);
     app.post('/pegar_funcionarios', { onRequest: [verifyJwt] }, getFuncionarios)
-    app.get('/pegar_unico_funcionario/:id', { onRequest: [verifyJwt] }, getUnicoFuncionario)
+    app.get('/pegar_unico_funcionario/:id', { onRequest: [verifyJwt, verificarCargo(['ADMINISTRADOR', 'PROPRIETARIO'])] }, getUnicoFuncionario)
+    app.post('/deletar_funcionario', { onRequest: [verifyJwt, verificarCargo(['ADMINISTRADOR', 'PROPRIETARIO'])] }, deletarFuncionario);
 
 
     //ROTAS DE CLIENTES

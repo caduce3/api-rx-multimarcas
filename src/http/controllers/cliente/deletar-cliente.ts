@@ -18,7 +18,7 @@ export async function deletarCliente(request: FastifyRequest, reply: FastifyRepl
             id_cliente
         })
 
-        return reply.status(201).send({
+        return reply.status(200).send({
             message: "Cliente deletado com sucesso!"
         });
 
