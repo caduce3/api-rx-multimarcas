@@ -8,6 +8,7 @@ import { getFuncionarios } from "./funcionario/pegar-funcionarios";
 import { getUnicoFuncionario } from "./funcionario/pegar-unico-funcionario";
 import { refresh } from "./funcionario/refresh";
 import { verificarCargo } from "../middlewares/verificar-cargo";
+import { registrarCliente } from "./cliente/registrar-cliente";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -22,6 +23,10 @@ export async function appRoutes(app: FastifyInstance) {
     app.put('/atualizar_funcionario', { onRequest: [verifyJwt, verificarCargo('ADMINISTRADOR')]}, atualizarFuncionario);
     app.post('/pegar_funcionarios', { onRequest: [verifyJwt] }, getFuncionarios)
     app.get('/pegar_unico_funcionario/:id', { onRequest: [verifyJwt] }, getUnicoFuncionario)
+
+
+    //ROTAS DE CLIENTES
+    app.post('/registrar_cliente', { onRequest: [verifyJwt] }, registrarCliente);
 
 
 }
