@@ -9,6 +9,7 @@ import { getUnicoFuncionario } from "./funcionario/pegar-unico-funcionario";
 import { refresh } from "./funcionario/refresh";
 import { verificarCargo } from "../middlewares/verificar-cargo";
 import { registrarCliente } from "./cliente/registrar-cliente";
+import { deletarCliente } from "./cliente/deletar-cliente";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -27,6 +28,7 @@ export async function appRoutes(app: FastifyInstance) {
 
     //ROTAS DE CLIENTES
     app.post('/registrar_cliente', { onRequest: [verifyJwt] }, registrarCliente);
+    app.post('/deletar_cliente', { onRequest: [verifyJwt] }, deletarCliente);
 
 
 }
