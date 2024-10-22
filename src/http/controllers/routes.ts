@@ -11,6 +11,7 @@ import { verificarCargo } from "../middlewares/verificar-cargo";
 import { registrarCliente } from "./cliente/registrar-cliente";
 import { deletarCliente } from "./cliente/deletar-cliente";
 import { deletarFuncionario } from "./funcionario/deletar-funcionario";
+import { atualizarCliente } from "./cliente/atualizar-cliente";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -31,6 +32,7 @@ export async function appRoutes(app: FastifyInstance) {
     //ROTAS DE CLIENTES
     app.post('/registrar_cliente', { onRequest: [verifyJwt] }, registrarCliente);
     app.post('/deletar_cliente', { onRequest: [verifyJwt] }, deletarCliente);
+    app.put('/atualizar_cliente', { onRequest: [verifyJwt]}, atualizarCliente);
 
 
 }

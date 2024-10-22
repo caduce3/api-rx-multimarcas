@@ -1,4 +1,4 @@
-import { Prisma, Clientes } from '@prisma/client'
+import { Prisma, Clientes, Endereco } from '@prisma/client'
 import { ClientesRepository } from '../cliente-repository'
 import { prisma } from '@/lib/prisma'
 
@@ -49,5 +49,52 @@ export class PrismaClientesRepository implements ClientesRepository {
         } else {
             return null
         }
+    }
+
+    async atualizarCliente(id: string, data: Prisma.ClientesUncheckedUpdateInput): Promise<Clientes> {
+        const cliente = await prisma.clientes.update({
+            where: {
+                id
+            },
+            data: {
+                nome: data.nome,
+                email: data.email,
+                telefone: data.telefone,
+                cpf: data.cpf
+            }
+        })
+
+        return cliente
+    }
+
+    async atualizarEnderecoCliente(id: string, data: Prisma.EnderecoUncheckedUpdateInput): Promise<Endereco> {
+        const endereco = await prisma.endereco.update({
+            where: {
+                id
+            },
+            data
+        })
+
+        return endereco
+    }
+
+    async findClienteByCpf(cpf: string): Promise<Clientes | null> {
+        const cliente = await prisma.clientes.findUnique({
+            where: {
+                cpf
+            }
+        })
+
+        return cliente
+    }
+
+    async findClienteById(id: string): Promise<Clientes | null> {
+        const cliente = await prisma.clientes.findUnique({
+            where: {
+                id
+            }
+        })
+
+        return cliente
     }
 }
