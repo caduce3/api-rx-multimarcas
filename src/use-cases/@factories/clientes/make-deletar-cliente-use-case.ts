@@ -2,8 +2,8 @@ import { PrismaClientesRepository } from "@/repositories/prisma/prisma-clientes-
 import { DeletarClienteUseCase } from "@/use-cases/clientes/deletar-cliente";
 
 export function makeDeletarClienteUseCase(){
-    const playersRepository = new PrismaClientesRepository()
-    const deletarClienteUseCase = new DeletarClienteUseCase(playersRepository)
+    const clientesRepository = new PrismaClientesRepository()
+    const deletarClienteUseCase = new DeletarClienteUseCase(clientesRepository)
 
     return deletarClienteUseCase
 }

@@ -2,8 +2,8 @@ import { PrismaFuncionarioRepository } from "@/repositories/prisma/prisma-funcio
 import { AuthenticateFuncionarioUseCase } from "@/use-cases/funcionarios/authenticate";
 
 export function makeAuthenticateFuncionarioUseCase(){
-    const usersRepository = new PrismaFuncionarioRepository()
-    const authenticateFuncionarioUseCase = new AuthenticateFuncionarioUseCase(usersRepository)
+    const funcionariosRepository = new PrismaFuncionarioRepository()
+    const authenticateFuncionarioUseCase = new AuthenticateFuncionarioUseCase(funcionariosRepository)
 
     return authenticateFuncionarioUseCase
 }

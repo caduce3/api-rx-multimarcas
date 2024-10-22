@@ -2,8 +2,8 @@ import { PrismaClientesRepository } from "@/repositories/prisma/prisma-clientes-
 import { RegisterClienteUseCase } from "@/use-cases/clientes/registrar-cliente";
 
 export function makeRegisterClienteUseCase(){
-    const playersRepository = new PrismaClientesRepository()
-    const registerClienteUseCase = new RegisterClienteUseCase(playersRepository)
+    const clientesRepository = new PrismaClientesRepository()
+    const registerClienteUseCase = new RegisterClienteUseCase(clientesRepository)
 
     return registerClienteUseCase
 }

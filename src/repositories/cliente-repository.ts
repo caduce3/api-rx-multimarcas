@@ -11,4 +11,11 @@ export interface ClientesRepository {
     findEnderecoById(id: string): Promise<Endereco | null>
     createEnderecoCliente(data: Prisma.EnderecoCreateInput): Promise<Endereco | null>
     deletarEnderecoCliente(id_endereco: string): Promise<Endereco | null>
+    pegarClientes(take: number, page: number, nome?: string, telefone?: string, email?: string, cpf?: string): Promise<{ clientes: Prisma.ClientesGetPayload<{
+        include: {
+            Enderecos: true,
+            Carrinho: true
+        }
+    }>[]; totalCount: number, }>
+    pegarUnicoCliente(id: string): Promise<Clientes | null>
 }

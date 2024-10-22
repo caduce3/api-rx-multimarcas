@@ -2,8 +2,8 @@ import { PrismaClientesRepository } from "@/repositories/prisma/prisma-clientes-
 import { AtualizarEnderecoClienteUseCase } from "@/use-cases/clientes/atualizar-endereco-cliente";
 
 export function makeAtualizarEnderecoClienteUseCase(){
-    const playersRepository = new PrismaClientesRepository()
-    const atualizarEnderecoClienteUseCase = new AtualizarEnderecoClienteUseCase(playersRepository)
+    const clientesRepository = new PrismaClientesRepository()
+    const atualizarEnderecoClienteUseCase = new AtualizarEnderecoClienteUseCase(clientesRepository)
 
     return atualizarEnderecoClienteUseCase
 }

@@ -113,4 +113,67 @@ export class PrismaClientesRepository implements ClientesRepository {
 
         return endereco
     }
+
+    async pegarClientes(
+        take: number, 
+        page: number, 
+        nome?: string, 
+        telefone?: string, 
+        email?: string, 
+        cpf?: string
+    ): Promise<{ 
+        clientes: Prisma.ClientesGetPayload<{
+            include: {
+                Enderecos: true,
+                Carrinho: true
+            }
+        }>[], 
+        totalCount: number 
+    }> {
+    
+        const skip = (page - 1) * take;
+    
+        // Construindo as condições dinamicamente
+        const conditions: Prisma.ClientesWhereInput[] = [];
+    
+        if (nome) conditions.push({ nome: { contains: nome, mode: 'insensitive' } });
+        if (telefone)  conditions.push({ telefone: { contains: telefone, mode: 'insensitive' } });    
+        if (email)  conditions.push({ email: { contains: email, mode: 'insensitive' } });
+        if (cpf) conditions.push({ cpf: { contains: cpf, mode: 'insensitive' } });
+        
+        // Garantindo que só passemos o AND se tivermos condições
+        const whereClause: Prisma.ClientesWhereInput = conditions.length > 0 ? { AND: conditions } : {};
+    
+        const totalCount = await prisma.clientes.count({
+            where: whereClause
+        });
+    
+        const clientes = await prisma.clientes.findMany({
+            where: whereClause,
+            orderBy: {
+                nome: 'asc'
+            },
+            include: {
+                Enderecos: true,
+                Carrinho: true
+            },
+            take,
+            skip,
+        });
+    
+        return {
+            clientes,
+            totalCount
+        };
+    }
+
+    async pegarUnicoCliente(id: string): Promise<Clientes | null> {
+        const cliente = await prisma.clientes.findUnique({
+            where: {
+                id
+            }
+        })
+
+        return cliente
+    }
 }
