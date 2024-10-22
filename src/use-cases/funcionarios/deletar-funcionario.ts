@@ -1,5 +1,5 @@
 import { FuncionarioRepository } from "@/repositories/funcionario-repository";
-import { FuncionarioNaoExiste } from "../@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "../@errors/funcionario/funcionario-nao-existe copy";
 
 interface DeletarFuncionarioRequest {
     id: string;

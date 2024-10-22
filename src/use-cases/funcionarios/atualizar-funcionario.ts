@@ -1,10 +1,10 @@
 import { FuncionarioRepository } from "@/repositories/funcionario-repository";
-import { FuncionarioNaoExiste } from "../@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "../@errors/funcionario/funcionario-nao-existe copy";
 import { Funcionario } from "@prisma/client";
-import { ErroAoAtualizarFuncionario } from "../@errors/funcionario-erro-atualizar";
+import { ErroAoAtualizarFuncionario } from "../@errors/funcionario/funcionario-erro-atualizar";
 import { validarFormatarCPF } from "@/services/formatar-cpf";
 import { validarEFormatarTelefone } from "@/services/formatar-telefone";
-import { FuncionarioAlreadyExistsError } from "../@errors/funcionario-ja-existe";
+import { FuncionarioAlreadyExistsError } from "../@errors/funcionario/funcionario-ja-existe";
 
 interface AtualizarFuncionarioRequest {
     id: string;

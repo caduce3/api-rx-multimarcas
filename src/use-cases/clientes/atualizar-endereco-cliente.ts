@@ -1,9 +1,9 @@
 import { ClientesRepository } from "@/repositories/cliente-repository";
 import { Endereco } from "@prisma/client";
-import { ClienteNaoExiste } from "../@errors/cliente-nao-existe";
-import { ErroAoCriarEnderecoCliente } from "../@errors/cliente-erro-criar-endereco";
-import { EnderecoClienteNaoExiste } from "../@errors/endereco-cliente-nao-existe";
-import { ErroAoAtualizarEnderecoCliente } from "../@errors/cliente-erro-atualizar-endereco";
+import { ClienteNaoExiste } from "../@errors/cliente/cliente-nao-existe";
+import { ErroAoCriarEnderecoCliente } from "../@errors/cliente/cliente-erro-criar-endereco";
+import { EnderecoClienteNaoExiste } from "../@errors/cliente/endereco-cliente-nao-existe";
+import { ErroAoAtualizarEnderecoCliente } from "../@errors/cliente/cliente-erro-atualizar-endereco";
 
 
 interface AtualizarEnderecoClienteRequest {

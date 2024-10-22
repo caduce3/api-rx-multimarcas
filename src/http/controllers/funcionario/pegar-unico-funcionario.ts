@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makePegarUnicoFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-pegar-unico-funcionario-use-case";
-import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario/funcionario-nao-existe copy";
 
 export async function getUnicoFuncionario(request: FastifyRequest, reply: FastifyReply) {
     const getUnicoFuncionarioBodySchema = z.object({

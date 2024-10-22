@@ -1,5 +1,5 @@
-import { EnderecoClienteNaoExiste } from "@/use-cases/@errors/endereco-cliente-nao-existe";
-import { ErroAoDeletarEnderecoCliente } from "@/use-cases/@errors/error-deletar-endereco-cliente";
+import { EnderecoClienteNaoExiste } from "@/use-cases/@errors/cliente/endereco-cliente-nao-existe";
+import { ErroAoDeletarEnderecoCliente } from "@/use-cases/@errors/cliente/error-deletar-endereco-cliente";
 import { makeDeletarEnderecoClienteUseCase } from "@/use-cases/@factories/clientes/make-deletar-endereco-cliente-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";

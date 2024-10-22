@@ -1,6 +1,6 @@
 import { ClientesRepository } from "@/repositories/cliente-repository";
 import { Clientes } from "@prisma/client";
-import { ClienteAlreadyExistsError } from "../@errors/cliente-ja-existe";
+import { ClienteAlreadyExistsError } from "../@errors/cliente/cliente-ja-existe";
 import { validarEFormatarTelefone } from "@/services/formatar-telefone";
 import { validarFormatarCPF } from "@/services/formatar-cpf";
 

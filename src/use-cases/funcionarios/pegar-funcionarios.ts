@@ -1,6 +1,6 @@
 import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { Funcionario } from "@prisma/client";
-import { ErroAoCarregarFuncionarios } from "../@errors/funcionario-erro-carregar";
+import { ErroAoCarregarFuncionarios } from "../@errors/funcionario/funcionario-erro-carregar";
 import { ErroAoCarregarPagina } from "../@errors/erro-carregar-pagina";
 
 interface pegarFuncionariosUseCaseRequest {

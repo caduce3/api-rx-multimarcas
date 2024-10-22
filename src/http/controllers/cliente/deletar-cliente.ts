@@ -1,4 +1,4 @@
-import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente-ja-existe";
+import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente/cliente-ja-existe";
 import { makeDeletarClienteUseCase } from "@/use-cases/@factories/clientes/make-deletar-cliente-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";

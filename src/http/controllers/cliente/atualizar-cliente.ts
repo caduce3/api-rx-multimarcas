@@ -5,10 +5,10 @@ import { DddInvalido } from "@/use-cases/@errors/erro-ddd-invalido";
 import { CpfDeveConterOzeDigitos } from "@/use-cases/@errors/erro-cpf-deve-ter-11-digitos";
 import { CpfInvalido } from "@/use-cases/@errors/erro-cpf-inválido";
 import { makeAtualizarClienteUseCase } from "@/use-cases/@factories/clientes/make-atualizar-cliente-use-case";
-import { ClienteNaoExiste } from "@/use-cases/@errors/cliente-nao-existe";
-import { ErroAoAtualizarCliente } from "@/use-cases/@errors/cliente-erro-atualizar";
-import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente-ja-existe";
-import { ErroAoAtualizarEnderecoCliente } from "@/use-cases/@errors/cliente-erro-atualizar-endereco";
+import { ClienteNaoExiste } from "@/use-cases/@errors/cliente/cliente-nao-existe";
+import { ErroAoAtualizarCliente } from "@/use-cases/@errors/cliente/cliente-erro-atualizar";
+import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente/cliente-ja-existe";
+import { ErroAoAtualizarEnderecoCliente } from "@/use-cases/@errors/cliente/cliente-erro-atualizar-endereco";
 
 export async function atualizarCliente(request: FastifyRequest, reply: FastifyReply) {
     const atualizarClienteBodySchema = z.object({

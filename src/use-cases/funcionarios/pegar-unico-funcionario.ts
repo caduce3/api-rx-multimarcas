@@ -1,6 +1,6 @@
 import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { Funcionario } from "@prisma/client";
-import { FuncionarioNaoExiste } from "../@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "../@errors/funcionario/funcionario-nao-existe copy";
 
 interface pegarUnicoFuncionarioUseCaseRequest {
     id: string;

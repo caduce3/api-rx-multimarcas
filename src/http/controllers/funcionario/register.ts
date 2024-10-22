@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { FuncionarioAlreadyExistsError } from "@/use-cases/@errors/funcionario-ja-existe";
+import { FuncionarioAlreadyExistsError } from "@/use-cases/@errors/funcionario/funcionario-ja-existe";
 import { makeRegisterFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-register-funcionario-use-case";
 import { TelefoneDeveConterOzeDigitos } from "@/use-cases/@errors/erro-telefone-deve-ter-11-digitos";
 import { DddInvalido } from "@/use-cases/@errors/erro-ddd-invalido";

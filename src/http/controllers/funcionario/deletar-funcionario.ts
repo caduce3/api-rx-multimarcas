@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario/funcionario-nao-existe copy";
 import { makeDeletarFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-deletar-funcionario-use-case";
 
 export async function deletarFuncionario(request: FastifyRequest, reply: FastifyReply) {

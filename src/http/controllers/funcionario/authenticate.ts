@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { InvalidCredentialsError } from "@/use-cases/@errors/invalid-credentials-error";
-import { FuncionarioInativo } from "@/use-cases/@errors/funcionario-inativo";
+import { FuncionarioInativo } from "@/use-cases/@errors/funcionario/funcionario-inativo";
 import { makeAuthenticateFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-authenticate-funcionario-use-case";
 
 export async function authenticateFuncionario(request: FastifyRequest, reply: FastifyReply) {

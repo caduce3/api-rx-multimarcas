@@ -1,4 +1,4 @@
-import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente-ja-existe";
+import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente/cliente-ja-existe";
 import { CpfDeveConterOzeDigitos } from "@/use-cases/@errors/erro-cpf-deve-ter-11-digitos";
 import { CpfInvalido } from "@/use-cases/@errors/erro-cpf-inválido";
 import { DddInvalido } from "@/use-cases/@errors/erro-ddd-invalido";

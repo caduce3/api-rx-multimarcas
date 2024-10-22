@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makePegarFuncionariosUseCase } from "@/use-cases/@factories/funcionarios/make-pegar-funcionarios-use-case";
-import { ErroAoCarregarFuncionarios } from "@/use-cases/@errors/funcionario-erro-carregar";
+import { ErroAoCarregarFuncionarios } from "@/use-cases/@errors/funcionario/funcionario-erro-carregar";
 import { ErroAoCarregarPagina } from "@/use-cases/@errors/erro-carregar-pagina";
 
 export async function getFuncionarios(request: FastifyRequest, reply: FastifyReply) {

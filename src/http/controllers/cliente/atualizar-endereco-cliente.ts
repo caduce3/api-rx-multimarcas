@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { ClienteNaoExiste } from "@/use-cases/@errors/cliente-nao-existe";
-import { ErroAoAtualizarCliente } from "@/use-cases/@errors/cliente-erro-atualizar";
-import { ErroAoAtualizarEnderecoCliente } from "@/use-cases/@errors/cliente-erro-atualizar-endereco";
+import { ClienteNaoExiste } from "@/use-cases/@errors/cliente/cliente-nao-existe";
+import { ErroAoAtualizarCliente } from "@/use-cases/@errors/cliente/cliente-erro-atualizar";
+import { ErroAoAtualizarEnderecoCliente } from "@/use-cases/@errors/cliente/cliente-erro-atualizar-endereco";
 import { makeAtualizarEnderecoClienteUseCase } from "@/use-cases/@factories/clientes/make-atualizar-endereco-cliente-use-case";
-import { EnderecoClienteNaoExiste } from "@/use-cases/@errors/endereco-cliente-nao-existe";
+import { EnderecoClienteNaoExiste } from "@/use-cases/@errors/cliente/endereco-cliente-nao-existe";
 
 export async function atualizarEnderecoCliente(request: FastifyRequest, reply: FastifyReply) {
     const atualizarEnderecoClienteBodySchema = z.object({

@@ -2,9 +2,9 @@ import { Clientes } from "@prisma/client";
 import { validarFormatarCPF } from "@/services/formatar-cpf";
 import { validarEFormatarTelefone } from "@/services/formatar-telefone";
 import { ClientesRepository } from "@/repositories/cliente-repository";
-import { ClienteNaoExiste } from "../@errors/cliente-nao-existe";
-import { ClienteAlreadyExistsError } from "../@errors/cliente-ja-existe";
-import { ErroAoAtualizarCliente } from "../@errors/cliente-erro-atualizar";
+import { ClienteNaoExiste } from "../@errors/cliente/cliente-nao-existe";
+import { ClienteAlreadyExistsError } from "../@errors/cliente/cliente-ja-existe";
+import { ErroAoAtualizarCliente } from "../@errors/cliente/cliente-erro-atualizar";
 
 interface AtualizarClienteRequest {
     id: string;

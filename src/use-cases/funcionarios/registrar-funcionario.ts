@@ -1,6 +1,6 @@
 import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { hash } from "bcryptjs";
-import { FuncionarioAlreadyExistsError } from "../@errors/funcionario-ja-existe";
+import { FuncionarioAlreadyExistsError } from "../@errors/funcionario/funcionario-ja-existe";
 import { Funcionario } from "@prisma/client";
 import { validarEFormatarTelefone } from "@/services/formatar-telefone";
 import { validarFormatarCPF } from "@/services/formatar-cpf";

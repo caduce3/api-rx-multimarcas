@@ -1,6 +1,6 @@
 import { ClientesRepository } from "@/repositories/cliente-repository"
-import { EnderecoClienteNaoExiste } from "../@errors/endereco-cliente-nao-existe";
-import { ErroAoDeletarEnderecoCliente } from "../@errors/error-deletar-endereco-cliente";
+import { EnderecoClienteNaoExiste } from "../@errors/cliente/endereco-cliente-nao-existe";
+import { ErroAoDeletarEnderecoCliente } from "../@errors/cliente/error-deletar-endereco-cliente";
 
 
 interface DeletarEnderecoClienteRequest {

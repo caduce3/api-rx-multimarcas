@@ -2,7 +2,7 @@ import { FuncionarioRepository } from "@/repositories/funcionario-repository";
 import { compare, hash } from "bcryptjs";
 import { Funcionario } from "@prisma/client";
 import { InvalidCredentialsError } from "../@errors/invalid-credentials-error";
-import { FuncionarioInativo } from "../@errors/funcionario-inativo";
+import { FuncionarioInativo } from "../@errors/funcionario/funcionario-inativo";
 
 interface AuthenticateFuncionarioRequest {
     email: string;

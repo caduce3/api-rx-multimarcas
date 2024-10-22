@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { makePegarUnicoFuncionarioUseCase } from "@/use-cases/@factories/funcionarios/make-pegar-unico-funcionario-use-case"
-import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario-nao-existe copy";
+import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario/funcionario-nao-existe copy";
 
 export async function getProfile(request: FastifyRequest, reply: FastifyReply) {
     try {

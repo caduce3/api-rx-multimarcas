@@ -1,7 +1,7 @@
 import { ClientesRepository } from "@/repositories/cliente-repository";
 import { Endereco } from "@prisma/client";
-import { ClienteNaoExiste } from "../@errors/cliente-nao-existe";
-import { ErroAoCriarEnderecoCliente } from "../@errors/cliente-erro-criar-endereco";
+import { ClienteNaoExiste } from "../@errors/cliente/cliente-nao-existe";
+import { ErroAoCriarEnderecoCliente } from "../@errors/cliente/cliente-erro-criar-endereco";
 
 
 interface CriarEnderecoClienteRequest {
