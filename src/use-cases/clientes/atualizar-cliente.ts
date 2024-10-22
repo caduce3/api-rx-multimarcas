@@ -5,7 +5,6 @@ import { ClientesRepository } from "@/repositories/cliente-repository";
 import { ClienteNaoExiste } from "../@errors/cliente-nao-existe";
 import { ClienteAlreadyExistsError } from "../@errors/cliente-ja-existe";
 import { ErroAoAtualizarCliente } from "../@errors/cliente-erro-atualizar";
-import { ErroAoAtualizarEnderecoCliente } from "../@errors/cliente-erro-atualizar-endereco";
 
 interface AtualizarClienteRequest {
     id: string;

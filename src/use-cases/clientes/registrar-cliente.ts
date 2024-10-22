@@ -43,11 +43,16 @@ export class RegisterClienteUseCase {
             throw new Error("O campo de email é obrigatório.");
         }
         
-        const clienteJaExiste = await this.clientesRepository.findByEmail(
+        const clienteJaExisteEmail = await this.clientesRepository.findByEmail(
             email.trim().toLowerCase()
         );
 
-        if (clienteJaExiste) {
+        const clienteJaExisteCpf = await this.clientesRepository.findClienteByCpf(cpf)
+        if (clienteJaExisteCpf) {
+            throw new ClienteAlreadyExistsError()
+        }
+
+        if (clienteJaExisteEmail) {
             throw new ClienteAlreadyExistsError();
         }
 
@@ -57,7 +62,7 @@ export class RegisterClienteUseCase {
                 email: email.trim().toLowerCase(),
                 telefone: validarEFormatarTelefone(telefone),
                 cpf: validarFormatarCPF(cpf),
-                Endereco: {
+                Enderecos: {
                     create: endereco
                 }
             });

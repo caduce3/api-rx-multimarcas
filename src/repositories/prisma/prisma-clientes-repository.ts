@@ -22,34 +22,21 @@ export class PrismaClientesRepository implements ClientesRepository {
     }
 
     async deletarCliente(id_cliente: string): Promise<Clientes | null> {
+        const enderecos = await prisma.endereco.deleteMany({
+            where: {
+                clienteId: id_cliente
+            }
+        });
 
-        const getCliente = await prisma.clientes.findUnique({
+        const cliente = await prisma.clientes.delete({
             where: {
                 id: id_cliente
             }
-        })
+        });
 
-        if(getCliente) {
-
-            if(getCliente.enderecoId != null) {
-                await prisma.endereco.deleteMany({
-                    where: {
-                        id: getCliente.enderecoId
-                    }
-                })
-            }
-
-            const cliente = await prisma.clientes.delete({
-                where: {
-                    id: id_cliente
-                }
-            })
-
-            return cliente
-        } else {
-            return null
-        }
+        return cliente
     }
+    
 
     async atualizarCliente(id: string, data: Prisma.ClientesUncheckedUpdateInput): Promise<Clientes> {
         const cliente = await prisma.clientes.update({
@@ -67,24 +54,14 @@ export class PrismaClientesRepository implements ClientesRepository {
         return cliente
     }
 
-    async atualizarEnderecoCliente(id: string, data: Prisma.EnderecoUncheckedUpdateInput): Promise<Endereco> {
-        const endereco = await prisma.endereco.update({
-            where: {
-                id
-            },
-            data
-        })
-
-        return endereco
-    }
-
+    
     async findClienteByCpf(cpf: string): Promise<Clientes | null> {
         const cliente = await prisma.clientes.findUnique({
             where: {
                 cpf
             }
         })
-
+        
         return cliente
     }
 
@@ -94,7 +71,36 @@ export class PrismaClientesRepository implements ClientesRepository {
                 id
             }
         })
-
+        
         return cliente
+    }
+
+    async atualizarEnderecoCliente(id: string, data: Prisma.EnderecoUncheckedUpdateInput): Promise<Endereco> {
+        const endereco = await prisma.endereco.update({
+            where: {
+                id
+            },
+            data
+        })
+    
+        return endereco
+    }
+
+    async findEnderecoById(id: string): Promise<Endereco | null> {
+        const endereco = await prisma.endereco.findUnique({
+            where: {
+                id
+            }
+        })
+
+        return endereco
+    }
+
+    async createEnderecoCliente(data: Prisma.EnderecoCreateInput): Promise<Endereco | null> {
+        const endereco = await prisma.endereco.create({
+            data
+        })
+
+        return endereco
     }
 }

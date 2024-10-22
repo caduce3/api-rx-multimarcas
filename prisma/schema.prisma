@@ -42,12 +42,11 @@ model Clientes {
   email       String   @unique
   telefone    String
   cpf         String   @unique
-  enderecoId  String?
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 
-  Endereco Endereco?  @relation(fields: [enderecoId], references: [id])
-  Carrinho Carrinho[]
+  Enderecos Endereco[] // Um cliente pode ter vários endereços
+  Carrinho  Carrinho[]
 }
 
 model Endereco {
@@ -61,7 +60,8 @@ model Endereco {
   dateCreated DateTime @default(now())
   dateUpdated DateTime @updatedAt
 
-  Clientes Clientes[]
+  clienteId String // Chave estrangeira para relacionar ao cliente
+  Clientes  Clientes @relation(fields: [clienteId], references: [id]) // Relaciona com o cliente
 }
 
 model Carrinho {

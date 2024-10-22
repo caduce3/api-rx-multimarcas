@@ -8,4 +8,6 @@ export interface ClientesRepository {
     deletarCliente(id_cliente: string): Promise<Clientes | null>
     atualizarCliente(id: string, data: Prisma.ClientesUncheckedUpdateInput ): Promise<Clientes>
     atualizarEnderecoCliente(id: string, data: Prisma.EnderecoUncheckedUpdateInput ): Promise<Endereco>
+    findEnderecoById(id: string): Promise<Endereco | null>
+    createEnderecoCliente(data: Prisma.EnderecoCreateInput): Promise<Endereco | null>
 }
