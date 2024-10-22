@@ -167,10 +167,14 @@ export class PrismaClientesRepository implements ClientesRepository {
         };
     }
 
-    async pegarUnicoCliente(id: string): Promise<Clientes | null> {
+    async pegarUnicoCliente(id: string): Promise<Prisma.ClientesGetPayload<{ include: { Enderecos: true; Carrinho: true; }; }> | null> {
         const cliente = await prisma.clientes.findUnique({
             where: {
                 id
+            },
+            include: {
+                Enderecos: true,
+                Carrinho: true
             }
         })
 

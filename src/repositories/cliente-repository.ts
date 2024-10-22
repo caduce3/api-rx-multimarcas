@@ -17,5 +17,10 @@ export interface ClientesRepository {
             Carrinho: true
         }
     }>[]; totalCount: number, }>
-    pegarUnicoCliente(id: string): Promise<Clientes | null>
+    pegarUnicoCliente(id: string): Promise<Prisma.ClientesGetPayload<{
+        include: {
+            Enderecos: true,
+            Carrinho: true
+        }
+    }> | null>
 }

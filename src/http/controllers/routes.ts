@@ -16,6 +16,7 @@ import { criarEnderecoCliente } from "./cliente/criar-endereco-cliente";
 import { atualizarEnderecoCliente } from "./cliente/atualizar-endereco-cliente";
 import { deletarEnderecoCliente } from "./cliente/deletar-endereco-cliente";
 import { pegarClientes } from "./cliente/pegar-clientes";
+import { pegarUnicoCliente } from "./cliente/pegar-unico-cliente";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -41,6 +42,7 @@ export async function appRoutes(app: FastifyInstance) {
     app.put('/atualizar_endereco_cliente', { onRequest: [verifyJwt]}, atualizarEnderecoCliente);
     app.post('/deletar_endereco_cliente', { onRequest: [verifyJwt] }, deletarEnderecoCliente);
     app.post('/pegar_clientes', { onRequest: [verifyJwt] }, pegarClientes)
+    app.get('/pegar_unico_cliente/:id', { onRequest: [verifyJwt] }, pegarUnicoCliente)
 
 
 }
