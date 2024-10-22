@@ -1,3 +1,4 @@
+import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente-ja-existe";
 import { makeDeletarClienteUseCase } from "@/use-cases/@factories/clientes/make-deletar-cliente-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
@@ -23,6 +24,13 @@ export async function deletarCliente(request: FastifyRequest, reply: FastifyRepl
         });
 
     } catch (error) {
-        return reply.status(500).send({ message: 'Erro ao deletar o cliente.' });
+        if(
+            error instanceof ClienteAlreadyExistsError
+        )
+        {
+            return reply.status(409).send({message: error.message})
+        }
+
+        throw error
     }
 }

@@ -103,4 +103,14 @@ export class PrismaClientesRepository implements ClientesRepository {
 
         return endereco
     }
+
+    async deletarEnderecoCliente(id_endereco: string): Promise<Endereco | null> {
+        const endereco = await prisma.endereco.delete({
+            where: {
+                id: id_endereco
+            }
+        })
+
+        return endereco
+    }
 }

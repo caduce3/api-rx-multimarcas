@@ -10,4 +10,5 @@ export interface ClientesRepository {
     atualizarEnderecoCliente(id: string, data: Prisma.EnderecoUncheckedUpdateInput ): Promise<Endereco>
     findEnderecoById(id: string): Promise<Endereco | null>
     createEnderecoCliente(data: Prisma.EnderecoCreateInput): Promise<Endereco | null>
+    deletarEnderecoCliente(id_endereco: string): Promise<Endereco | null>
 }

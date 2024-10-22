@@ -14,6 +14,7 @@ import { deletarFuncionario } from "./funcionario/deletar-funcionario";
 import { atualizarCliente } from "./cliente/atualizar-cliente";
 import { criarEnderecoCliente } from "./cliente/criar-endereco-cliente";
 import { atualizarEnderecoCliente } from "./cliente/atualizar-endereco-cliente";
+import { deletarEnderecoCliente } from "./cliente/deletar-endereco-cliente";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -37,6 +38,7 @@ export async function appRoutes(app: FastifyInstance) {
     app.put('/atualizar_cliente', { onRequest: [verifyJwt]}, atualizarCliente);
     app.post('/criar_endereco_cliente', { onRequest: [verifyJwt] }, criarEnderecoCliente);
     app.put('/atualizar_endereco_cliente', { onRequest: [verifyJwt]}, atualizarEnderecoCliente);
+    app.post('/deletar_endereco_cliente', { onRequest: [verifyJwt] }, deletarEnderecoCliente);
 
 
 }
