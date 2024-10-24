@@ -91,13 +91,13 @@ model ItemCarrinho {
 }
 
 model Produtos {
-  id          String   @id @default(uuid())
-  nome        String
-  descricao   String
-  preco       Float
-  quantidade  Int
-  dateCreated DateTime @default(now())
-  dateUpdated DateTime @updatedAt
+  id                   String   @id @default(uuid())
+  nome                 String   @unique
+  descricao            String
+  preco                Float
+  quantidadeDisponivel Int
+  dateCreated          DateTime @default(now())
+  dateUpdated          DateTime @updatedAt
 
   ItemCarrinho ItemCarrinho[]
 }
