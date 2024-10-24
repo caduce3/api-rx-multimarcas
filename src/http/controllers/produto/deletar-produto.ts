@@ -1,4 +1,3 @@
-import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente/cliente-ja-existe";
 import { ErroDeletarProduto } from "@/use-cases/@errors/produto/erro-deletar-produto";
 import { ProdutoNaoExiste } from "@/use-cases/@errors/produto/erro-produto-nao-existe";
 import { makeDeletarProdutoUseCase } from "@/use-cases/@factories/produtos/make-deletar-produto-use-case";
