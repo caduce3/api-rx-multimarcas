@@ -35,14 +35,14 @@ export async function appRoutes(app: FastifyInstance) {
 
 
     //ROTAS DE CLIENTES
-    app.post('/registrar_cliente', { onRequest: [verifyJwt] }, registrarCliente);
+    app.post('/registrar_cliente', { onRequest: [verifyJwt, verificarCargo(['ADMINISTRADOR', 'PROPRIETARIO'])] }, registrarCliente);
     app.post('/deletar_cliente', { onRequest: [verifyJwt] }, deletarCliente);
     app.put('/atualizar_cliente', { onRequest: [verifyJwt]}, atualizarCliente);
     app.post('/criar_endereco_cliente', { onRequest: [verifyJwt] }, criarEnderecoCliente);
     app.put('/atualizar_endereco_cliente', { onRequest: [verifyJwt]}, atualizarEnderecoCliente);
     app.post('/deletar_endereco_cliente', { onRequest: [verifyJwt] }, deletarEnderecoCliente);
     app.post('/pegar_clientes', { onRequest: [verifyJwt] }, pegarClientes)
-    app.get('/pegar_unico_cliente/:id', { onRequest: [verifyJwt] }, pegarUnicoCliente)
+    app.get('/clientes/:id', { onRequest: [verifyJwt] }, pegarUnicoCliente)
 
 
 }
