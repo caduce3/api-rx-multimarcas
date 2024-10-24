@@ -65,7 +65,7 @@ export class PrismaProdutosRepository implements ProdutoRepository {
         const produtos = await prisma.produtos.findMany({
             where: whereClause,
             orderBy: {
-                nome: 'asc'
+                quantidadeDisponivel: 'asc'
             },
             take,
             skip,
