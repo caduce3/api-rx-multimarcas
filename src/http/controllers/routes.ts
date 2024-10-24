@@ -21,6 +21,7 @@ import { pegarUnicoEndereco } from "./endereco/pegar-unico-endereco";
 import { cadastrarProduto } from "./produto/cadastrar-produto";
 import { deletarProduto } from "./produto/deletar-produto";
 import { atualizarProduto } from "./produto/atualizar-produto";
+import { pegarProdutos } from "./produto/pegar-produtos";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -56,6 +57,7 @@ export async function appRoutes(app: FastifyInstance) {
     app.post('/cadastrar_produto', { onRequest: [verifyJwt] }, cadastrarProduto)
     app.post('/deletar_produto', { onRequest: [verifyJwt] }, deletarProduto)
     app.put('/atualizar_produto', { onRequest: [verifyJwt] }, atualizarProduto)
+    app.post('/pegar_produtos', { onRequest: [verifyJwt] }, pegarProdutos)
 
 
 }
