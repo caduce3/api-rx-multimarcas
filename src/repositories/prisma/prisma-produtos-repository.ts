@@ -104,13 +104,17 @@ export class PrismaProdutosRepository implements ProdutoRepository {
     }
 
     async findProdutoByNome(nome: string): Promise<Produtos | null> {
-        const produto = await prisma.produtos.findUnique({
+        const produto = await prisma.produtos.findFirst({
             where: {
-                nome: nome
+                nome: {
+                    contains: nome,
+                    mode: 'insensitive' 
+                }
             }
-        })
-
-        return produto
+        });
+    
+        return produto;
     }
+    
 
 }
