@@ -86,13 +86,13 @@ model Carrinho {
 }
 
 model ItemCarrinho {
-  id          String   @id @default(uuid())
-  carrinhoId  String
-  produtoId   String
-  quantidade  Int
-  preco       Float
-  dateCreated DateTime @default(now())
-  dateUpdated DateTime @updatedAt
+  id                String   @id @default(uuid())
+  carrinhoId        String
+  produtoId         String
+  unidadesProduto   Int
+  totalItemCarrinho Float
+  dateCreated       DateTime @default(now())
+  dateUpdated       DateTime @updatedAt
 
   Carrinho Carrinho @relation(fields: [carrinhoId], references: [id])
   Produtos Produtos @relation(fields: [produtoId], references: [id])
