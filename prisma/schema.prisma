@@ -24,6 +24,11 @@ enum Cargos {
   COLABORADOR
 }
 
+enum TipoPagamento {
+  DINHEIRO
+  CARTAO
+}
+
 model Funcionario {
   id       String     @id @default(uuid())
   nome     String
@@ -65,12 +70,15 @@ model Endereco {
 }
 
 model Carrinho {
-  id            String   @id @default(uuid())
+  id            String        @id @default(uuid())
   clienteId     String
   funcionarioId String
   valorTotal    Float
-  dateCreated   DateTime @default(now())
-  dateUpdated   DateTime @updatedAt
+  subtotal      Float
+  desconto      Float         @default(0)
+  dateCreated   DateTime      @default(now())
+  dateUpdated   DateTime      @updatedAt
+  tipoPagamento TipoPagamento @default(CARTAO)
 
   Clientes     Clientes       @relation(fields: [clienteId], references: [id])
   Funcionario  Funcionario    @relation(fields: [funcionarioId], references: [id])
@@ -78,13 +86,13 @@ model Carrinho {
 }
 
 model ItemCarrinho {
-  id            String   @id @default(uuid())
-  carrinhoId    String
-  produtoId     String
-  quantidade    Int
-  precoUnitario Float
-  dateCreated   DateTime @default(now())
-  dateUpdated   DateTime @updatedAt
+  id          String   @id @default(uuid())
+  carrinhoId  String
+  produtoId   String
+  quantidade  Int
+  preco       Float
+  dateCreated DateTime @default(now())
+  dateUpdated DateTime @updatedAt
 
   Carrinho Carrinho @relation(fields: [carrinhoId], references: [id])
   Produtos Produtos @relation(fields: [produtoId], references: [id])
