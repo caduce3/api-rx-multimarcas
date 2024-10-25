@@ -24,7 +24,7 @@ export class AtualizarProdutoUseCase {
         const produto = await this.produtoRepository.findProdutoById(id_produto)
         if(!produto) throw new ProdutoNaoExiste()
         
-        if(nome) {
+        if(nome && nome !== produto.nome) {
             const produtoJaExiste = await this.produtoRepository.findProdutoByNome(nome)
             if(produtoJaExiste) throw new ProdutoJaExiste();
         }
