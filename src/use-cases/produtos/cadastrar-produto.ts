@@ -1,9 +1,4 @@
-import { FuncionarioRepository } from "@/repositories/funcionario-repository";
-import { hash } from "bcryptjs";
-import { FuncionarioAlreadyExistsError } from "../@errors/funcionario/funcionario-ja-existe";
 import {  Produtos } from "@prisma/client";
-import { validarEFormatarTelefone } from "@/services/formatar-telefone";
-import { validarFormatarCPF } from "@/services/formatar-cpf";
 import { ProdutoRepository } from "@/repositories/produto-repository";
 import { ProdutoJaExiste } from "../@errors/produto/erro-produto-ja-existe";
 import { ErroCadastrarProduto } from "../@errors/produto/erro-cadastrar-produto";
