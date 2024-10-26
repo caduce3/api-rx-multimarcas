@@ -12,7 +12,7 @@ export interface CarrinhoRepository {
             Funcionario: true
         }
     }>[]; totalCount: number, }>
-    pegarUnicoCarrinho(id_carrinho: string): Promise<Prisma.CarrinhoGetPayload<{
+    pegarUnicoCarrinho(id: string): Promise<Prisma.CarrinhoGetPayload<{
         include: {
             ItemCarrinho: true,
             Clientes: true,

@@ -87,7 +87,7 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
         };
     }
 
-    async pegarUnicoCarrinho(id_carrinho: string): Promise<Prisma.CarrinhoGetPayload<
+    async pegarUnicoCarrinho(id: string): Promise<Prisma.CarrinhoGetPayload<
     { 
         include: { 
             ItemCarrinho: true; 
@@ -97,7 +97,7 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
     }> | null> {
         const carrinho = await prisma.carrinho.findUnique({
             where: {
-                id: id_carrinho
+                id
             },
             include: {
                 ItemCarrinho: true,
