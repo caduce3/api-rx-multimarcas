@@ -42,7 +42,7 @@ export class CadastrarCarrinhoUseCase {
             desconto,
             subtotal,
             tipoPagamento,
-            valorTotal
+            valorTotal: parseFloat((subtotal - (subtotal * (desconto / 100))).toFixed(2))
         })
 
         if(!criarCarrinho) throw new ErroAoCriarCarrinho();

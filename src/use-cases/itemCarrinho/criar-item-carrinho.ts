@@ -30,7 +30,7 @@ export class CadastrarItemCarrinhoUseCase {
             Carrinho: { connect: { id: carrinhoId } },
             Produtos: { connect: { id: produtoId } },
             unidadesProduto,
-            totalItemCarrinho: (produtoExiste.preco * unidadesProduto)
+            totalItemCarrinho: Number((produtoExiste.preco * unidadesProduto).toFixed(2)),
         })
 
         if(!criarItemCarrinho) throw new ErroAoCriarItemCarrinho();

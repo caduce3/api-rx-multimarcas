@@ -10,4 +10,21 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
 
         return carrinho
     }
+
+    async atualizarCarrinho(id_carrinho: string, data: Prisma.CarrinhoUncheckedUpdateInput): Promise<Carrinho> {
+        const carrinho = await prisma.carrinho.update({
+            where: { id: id_carrinho },
+            data
+        })
+
+        return carrinho
+    }
+
+    async findById(id: string): Promise<Carrinho | null> {
+        const carrinho = await prisma.carrinho.findUnique({
+            where: { id }
+        })
+
+        return carrinho
+    }
 }

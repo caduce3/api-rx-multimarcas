@@ -23,6 +23,7 @@ import { deletarProduto } from "./produto/deletar-produto";
 import { atualizarProduto } from "./produto/atualizar-produto";
 import { pegarProdutos } from "./produto/pegar-produtos";
 import { pegarUnicoProduto } from "./produto/pegar-unico-produto";
+import { cadastrarVenda } from "./vendas/cadastrar-venda";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -60,6 +61,10 @@ export async function appRoutes(app: FastifyInstance) {
     app.put('/atualizar_produto', { onRequest: [verifyJwt] }, atualizarProduto)
     app.post('/pegar_produtos', { onRequest: [verifyJwt] }, pegarProdutos)
     app.get('/produtos/:id', { onRequest: [verifyJwt] }, pegarUnicoProduto)
+
+
+    //ROTAS VENDAS
+    app.post('/cadastrar_venda', { onRequest: [verifyJwt] }, cadastrarVenda)
 
 
 }

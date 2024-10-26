@@ -26,7 +26,8 @@ enum Cargos {
 
 enum TipoPagamento {
   DINHEIRO
-  CARTAO
+  CREDITO
+  DEBITO
 }
 
 model Funcionario {
@@ -78,7 +79,7 @@ model Carrinho {
   desconto      Float         @default(0)
   dateCreated   DateTime      @default(now())
   dateUpdated   DateTime      @updatedAt
-  tipoPagamento TipoPagamento @default(CARTAO)
+  tipoPagamento TipoPagamento
 
   Clientes     Clientes       @relation(fields: [clienteId], references: [id])
   Funcionario  Funcionario    @relation(fields: [funcionarioId], references: [id])
