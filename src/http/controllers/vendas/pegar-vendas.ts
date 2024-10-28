@@ -7,14 +7,14 @@ import { ErroCarregarCarrinhos } from "@/use-cases/@errors/carrinho/erro-carrega
 export async function pegarVendas(request: FastifyRequest, reply: FastifyReply) {
     const pegarVendasBodySchema = z.object({
         page: z.number(),
-        clienteId: z.string().optional(),
-        funcionarioId: z.string().optional()
+        nome_cliente: z.string().optional(),
+        nome_funcionario: z.string().optional()
     })
 
     const { 
         page,
-        clienteId,
-        funcionarioId
+        nome_cliente,
+        nome_funcionario
     } = pegarVendasBodySchema.parse(request.body)
 
     try {
@@ -22,8 +22,8 @@ export async function pegarVendas(request: FastifyRequest, reply: FastifyReply) 
 
         const { carrinhosList, totalItens, totalPages } = await pegarCarrinhosUseCase.execute({
             page,
-            clienteId,
-            funcionarioId
+            nome_cliente,
+            nome_funcionario
         })
 
         return reply.status(200).send({

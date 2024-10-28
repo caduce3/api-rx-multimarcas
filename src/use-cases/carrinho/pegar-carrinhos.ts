@@ -7,8 +7,8 @@ import { ErroCarregarCarrinhos } from "../@errors/carrinho/erro-carregar-carrinh
 
 interface pegarCarrinhosUseCaseRequest {
     page: number;
-    clienteId?: string;
-    funcionarioId?: string;
+    nome_cliente?: string;
+    nome_funcionario?: string;
 }
 
 interface pegarCarrinhosUseCaseResponse {
@@ -24,13 +24,13 @@ export class PegarCarrinhosUseCase {
     ) {}
     
     async execute({
-        page, clienteId, funcionarioId
+        page, nome_cliente, nome_funcionario
     }: pegarCarrinhosUseCaseRequest): Promise<pegarCarrinhosUseCaseResponse> {
 
         if (page <= 0) page = 1;
 
         const take = 10;
-        const { carrinhos, totalCount } = await this.carrinhosRepository.pegarCarrinhos(take, page, clienteId, funcionarioId);
+        const { carrinhos, totalCount } = await this.carrinhosRepository.pegarCarrinhos(take, page, nome_cliente, nome_funcionario);
 
         if (!carrinhos || carrinhos.length === 0) {
             return {

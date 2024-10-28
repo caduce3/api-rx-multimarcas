@@ -5,7 +5,7 @@ export interface CarrinhoRepository {
     atualizarCarrinho(id_carrinho: string, data: Prisma.CarrinhoUncheckedUpdateInput): Promise<Carrinho>
     findById(id: string): Promise<Carrinho | null>
     deletarCarrinho(id_carrinho: string): Promise<Carrinho | null>
-    pegarCarrinhos(take: number, page: number, cliendId?: string, funcionarioId?: string): Promise<{ carrinhos: Prisma.CarrinhoGetPayload<{
+    pegarCarrinhos(take: number, page: number, nome_cliente?: string, nome_funcionario?: string): Promise<{ carrinhos: Prisma.CarrinhoGetPayload<{
         include: {
             ItemCarrinho: true,
             Clientes: true,

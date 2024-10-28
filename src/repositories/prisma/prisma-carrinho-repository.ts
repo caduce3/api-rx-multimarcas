@@ -39,8 +39,8 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
     async pegarCarrinhos(
         take: number, 
         page: number, 
-        clienteId?: string, 
-        funcionarioId?: string
+        nome_cliente?: string, 
+        nome_funcionario?: string
     ): Promise<{ 
         carrinhos: Prisma.CarrinhoGetPayload<{
             include: {
@@ -57,8 +57,8 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
         // Construindo as condições dinamicamente
         const conditions: Prisma.CarrinhoWhereInput[] = [];
     
-        if (clienteId) conditions.push({ clienteId: { contains: clienteId } });
-        if (funcionarioId)  conditions.push({ funcionarioId: { contains: funcionarioId } }); 
+        if (nome_cliente) conditions.push({ Clientes: {nome: { contains: nome_cliente } }  });
+        if (nome_funcionario)  conditions.push({ Funcionario: { nome: { contains: nome_funcionario }}  }); 
         
         // Garantindo que só passemos o AND se tivermos condições
         const whereClause: Prisma.CarrinhoWhereInput = conditions.length > 0 ? { AND: conditions } : {};
