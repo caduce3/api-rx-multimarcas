@@ -2,6 +2,7 @@ import { ErroAoCriarCarrinho } from "@/use-cases/@errors/carrinho/erro-criar-car
 import { ClienteNaoExiste } from "@/use-cases/@errors/cliente/cliente-nao-existe";
 import { FuncionarioNaoExiste } from "@/use-cases/@errors/funcionario/funcionario-nao-existe copy";
 import { ErroAoCriarItemCarrinho } from "@/use-cases/@errors/item-carrinho/erro-criar-item-carrinho";
+import { ErroQuantidadeProdutoIndisponivel } from "@/use-cases/@errors/item-carrinho/erro-qtd-produtot";
 import { ProdutoNaoExiste } from "@/use-cases/@errors/produto/erro-produto-nao-existe";
 import { makeAtualizarCarrinhoUseCase } from "@/use-cases/@factories/carrinho/make-atualizar-carrinho-use-case";
 import { makeCadastrarCarrinhoUseCase } from "@/use-cases/@factories/carrinho/make-cadastrar-carrinho-use-case";
@@ -40,6 +41,7 @@ export async function cadastrarVenda(request: FastifyRequest, reply: FastifyRepl
 
         let subtotal = 0;
 
+
         for (const item of itens) {
             const { itemCarrinho } = await cadastrarItemCarrinhoUseCase.execute({
                 carrinhoId: carrinho.id,
@@ -61,7 +63,9 @@ export async function cadastrarVenda(request: FastifyRequest, reply: FastifyRepl
         return reply.status(201).send({ message: "Venda registrada com sucesso!", carrinhoAtualizado });
 
     } catch (error) {
-        if (error instanceof ProdutoNaoExiste || error instanceof ErroAoCriarItemCarrinho || error instanceof ClienteNaoExiste || error instanceof FuncionarioNaoExiste || error instanceof ErroAoCriarCarrinho) {
+        if (error instanceof ProdutoNaoExiste || error instanceof ErroAoCriarItemCarrinho ||
+             error instanceof ClienteNaoExiste || error instanceof FuncionarioNaoExiste || 
+             error instanceof ErroAoCriarCarrinho || error instanceof ErroQuantidadeProdutoIndisponivel) {
             return reply.status(409).send({ message: error.message });
         }
 
