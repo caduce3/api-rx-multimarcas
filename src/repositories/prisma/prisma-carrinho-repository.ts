@@ -70,7 +70,7 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
         const carrinhos = await prisma.carrinho.findMany({
             where: whereClause,
             orderBy: {
-                dateCreated: 'asc'
+                dateCreated: 'desc'
             },
             include: {
                 ItemCarrinho: true,
