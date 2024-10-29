@@ -6,7 +6,7 @@ import { z } from "zod";
 
 export async function deletarEnderecoCliente(request: FastifyRequest, reply: FastifyReply) {
     const deletarEnderecoClienteBodySchema = z.object({
-        id_endereco: z.string().uuid()
+        id_endereco: z.string()
     })
 
     const { 

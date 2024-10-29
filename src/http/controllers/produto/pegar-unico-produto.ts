@@ -5,7 +5,7 @@ import { ProdutoNaoExiste } from "@/use-cases/@errors/produto/erro-produto-nao-e
 
 export async function pegarUnicoProduto(request: FastifyRequest, reply: FastifyReply) {
     const pegarUnicoProdutoBodySchema = z.object({
-        id: z.string().uuid()
+        id: z.string()
     })
 
     const { 

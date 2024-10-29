@@ -5,7 +5,7 @@ import { z } from "zod";
 
 export async function deletarCliente(request: FastifyRequest, reply: FastifyReply) {
     const deletarClienteBodySchema = z.object({
-        id_cliente: z.string().uuid()
+        id_cliente: z.string()
     })
 
     const { 

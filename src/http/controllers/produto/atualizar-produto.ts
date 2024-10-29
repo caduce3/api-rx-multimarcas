@@ -7,7 +7,7 @@ import { ProdutoJaExiste } from "@/use-cases/@errors/produto/erro-produto-ja-exi
 
 export async function atualizarProduto(request: FastifyRequest, reply: FastifyReply) {
     const atualizarProdutoBodySchema = z.object({
-        id_produto: z.string().uuid(),
+        id_produto: z.string(),
         nome: z.string().optional(),
         descricao: z.string().optional(),
         preco: z.number().optional(),

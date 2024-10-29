@@ -5,7 +5,7 @@ import { CarrinhoNaoExiste } from "@/use-cases/@errors/carrinho/erro-carrinho-na
 
 export async function pegarUnicaVenda(request: FastifyRequest, reply: FastifyReply) {
     const pegarUnicaVendaParamsSchema = z.object({
-        id: z.string().uuid()
+        id: z.string()
     })
 
     const { 

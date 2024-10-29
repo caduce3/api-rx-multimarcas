@@ -12,8 +12,8 @@ import { z } from "zod";
 
 export async function cadastrarVenda(request: FastifyRequest, reply: FastifyReply) {
     const cadastrarVendaBodySchema = z.object({
-        clienteId: z.string().uuid(),
-        funcionarioId: z.string().uuid(),
+        clienteId: z.string(),
+        funcionarioId: z.string(),
         tipoPagamento: z.enum(["CREDITO", "DEBITO", "DINHEIRO"]),
         desconto: z.number().min(0),
         itens: z.array(z.object({
