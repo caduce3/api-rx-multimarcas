@@ -7,6 +7,7 @@ import { ProdutoNaoExiste } from "@/use-cases/@errors/produto/erro-produto-nao-e
 import { makeAtualizarCarrinhoUseCase } from "@/use-cases/@factories/carrinho/make-atualizar-carrinho-use-case";
 import { makeCadastrarCarrinhoUseCase } from "@/use-cases/@factories/carrinho/make-cadastrar-carrinho-use-case";
 import { makeCadastrarItemCarrinhoUseCase } from "@/use-cases/@factories/item-carrinho/make-cadastrar-item-carrinho-use-case";
+import { makePegarUnicoProdutoUseCase } from "@/use-cases/@factories/produtos/make-pegar-unico-produto-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
@@ -28,6 +29,18 @@ export async function cadastrarVenda(request: FastifyRequest, reply: FastifyRepl
         const cadastrarCarrinhoUseCase = makeCadastrarCarrinhoUseCase();
         const cadastrarItemCarrinhoUseCase = makeCadastrarItemCarrinhoUseCase();
         const atualizarCarrinho = makeAtualizarCarrinhoUseCase();
+        const pegarProduto = makePegarUnicoProdutoUseCase();
+
+        //preciso verificar se todos os itens tem produto disponivel antes de criar o carrinho
+        for (const item of itens) {
+            const produto = await pegarProduto.execute({
+                id: item.produtoId
+            });
+
+            if (produto.produto.quantidadeDisponivel < item.unidadesProduto) {
+                throw new ErroQuantidadeProdutoIndisponivel(produto.produto.quantidadeDisponivel);
+            }
+        }
 
         // Criar o carrinho inicialmente com subtotal 0
         const { carrinho } = await cadastrarCarrinhoUseCase.execute({
