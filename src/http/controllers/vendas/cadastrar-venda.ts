@@ -38,7 +38,7 @@ export async function cadastrarVenda(request: FastifyRequest, reply: FastifyRepl
             });
 
             if (produto.produto.quantidadeDisponivel < item.unidadesProduto) {
-                throw new ErroQuantidadeProdutoIndisponivel(produto.produto.quantidadeDisponivel);
+                throw new ErroQuantidadeProdutoIndisponivel(produto.produto.quantidadeDisponivel, produto.produto.nome);
             }
         }
 

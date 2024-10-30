@@ -28,7 +28,7 @@ export class CadastrarItemCarrinhoUseCase {
         if(!produtoExiste) throw new ProdutoNaoExiste();
 
         //antes de criar o itemCarrinho, verificar se a quantidadeDisponivel do produto é maior que a quantidade solicitada
-        if(produtoExiste.quantidadeDisponivel < unidadesProduto) throw new ErroQuantidadeProdutoIndisponivel(produtoExiste.quantidadeDisponivel);
+        if(produtoExiste.quantidadeDisponivel < unidadesProduto) throw new ErroQuantidadeProdutoIndisponivel(produtoExiste.quantidadeDisponivel, produtoExiste.nome);
 
         const criarItemCarrinho = await this.itemCarrinhoRepository.createItemCarrinho({
             Carrinho: { connect: { id: carrinhoId } },
