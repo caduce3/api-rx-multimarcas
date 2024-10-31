@@ -26,6 +26,7 @@ import { pegarUnicoProduto } from "./produto/pegar-unico-produto";
 import { cadastrarVenda } from "./vendas/cadastrar-venda";
 import { pegarVendas } from "./vendas/pegar-vendas";
 import { pegarUnicaVenda } from "./vendas/pegar-unica-venda";
+import { deletarCarrinho } from "./vendas/deletar-carrinho";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -69,6 +70,6 @@ export async function appRoutes(app: FastifyInstance) {
     app.post('/cadastrar_venda', { onRequest: [verifyJwt] }, cadastrarVenda)
     app.post('/pegar_vendas', { onRequest: [verifyJwt] }, pegarVendas)
     app.get('/vendas/:id', { onRequest: [verifyJwt] }, pegarUnicaVenda)
-
+    app.post('/deletar_venda', { onRequest: [verifyJwt] }, deletarCarrinho)
 
 }

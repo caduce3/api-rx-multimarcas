@@ -29,9 +29,14 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
     }
 
     async deletarCarrinho(id_carrinho: string): Promise<Carrinho | null> {
+        await prisma.itemCarrinho.deleteMany({
+            where: { carrinhoId: id_carrinho }
+        })
+        
         const carrinho = await prisma.carrinho.delete({
             where: { id: id_carrinho }
         })
+
 
         return carrinho
     }
