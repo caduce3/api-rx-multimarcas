@@ -30,6 +30,7 @@ import { deletarCarrinho } from "./vendas/deletar-carrinho";
 import { pegarValorTotalPorMes } from "./vendas/grafico-valorTotal-by-mes";
 import { pegarQuantidadeTotalCliente } from "./cliente/quantidade-total-clientes";
 import { pegarQuantidadeVendas } from "./vendas/pegar-qtd-vendas";
+import { pegarReceita } from "./vendas/pegar-receita";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -80,5 +81,6 @@ export async function appRoutes(app: FastifyInstance) {
     app.post('/valor_total_vendas_por_mes', { onRequest: [verifyJwt] }, pegarValorTotalPorMes)
     app.post('/qtd_clientes', { onRequest: [verifyJwt] }, pegarQuantidadeTotalCliente)
     app.post('/qtd_vendas', { onRequest: [verifyJwt] }, pegarQuantidadeVendas)
+    app.post('/pegar_receita', { onRequest: [verifyJwt] }, pegarReceita)
 
 }
