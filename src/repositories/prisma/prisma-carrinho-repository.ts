@@ -149,4 +149,37 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
             }
         })
     }
+
+    async pegarQtdTotalCarrinho(date_init: string, date_finish: string): Promise<{ quantidadeTotalCarrinhos: number; }> {
+        const quantidadeTotalCarrinhos = await prisma.carrinho.count({
+            where: {
+                dateCreated: {
+                    gte: new Date(date_init),
+                    lte: new Date(date_finish)
+                }
+            }
+        })
+
+        return { quantidadeTotalCarrinhos }
+    }
+
+    async pegarReceitaTotal(date_init: string, date_finish: string): Promise<{ receitaTotal: number; }> {
+        const carrinhos = await prisma.carrinho.findMany({
+            where: {
+                dateCreated: {
+                    gte: new Date(date_init),
+                    lte: new Date(date_finish)
+                }
+            },
+            select: {
+                valorTotal: true
+            }
+        })
+
+        const receitaTotal = carrinhos.reduce((acc, carrinho) => {
+            return acc + carrinho.valorTotal
+        }, 0)
+
+        return { receitaTotal }
+    }
 }

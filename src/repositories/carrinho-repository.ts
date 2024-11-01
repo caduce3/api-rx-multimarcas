@@ -20,4 +20,6 @@ export interface CarrinhoRepository {
         }
     }> | null>
     pegarSomaValorTotalMes(date_init: string, date_finish: string): Promise<{ mes: string, valorTotal: number }[]>
+    pegarQtdTotalCarrinho(date_init: string, date_finish: string): Promise<{ quantidadeTotalCarrinhos: number }>
+    pegarReceitaTotal(date_init: string, date_finish: string): Promise<{ receitaTotal: number }>
 }
