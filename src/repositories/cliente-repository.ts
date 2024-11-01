@@ -23,4 +23,5 @@ export interface ClientesRepository {
             Carrinho: true
         }
     }> | null>
+    pegarQtdTotalCliente(date_init: string, date_finish: string): Promise<{ quantidadeTotalClientes: number }>
 }

@@ -28,6 +28,7 @@ import { pegarVendas } from "./vendas/pegar-vendas";
 import { pegarUnicaVenda } from "./vendas/pegar-unica-venda";
 import { deletarCarrinho } from "./vendas/deletar-carrinho";
 import { pegarValorTotalPorMes } from "./vendas/grafico-valorTotal-by-mes";
+import { pegarQuantidadeTotalCliente } from "./cliente/quantidade-total-clientes";
 
 export async function appRoutes(app: FastifyInstance) {
     app.post('/funcionario', registerFuncionario)
@@ -76,5 +77,6 @@ export async function appRoutes(app: FastifyInstance) {
 
     //GRÁFICOS
     app.post('/valor_total_vendas_por_mes', { onRequest: [verifyJwt] }, pegarValorTotalPorMes)
+    app.post('/qtd_clientes', { onRequest: [verifyJwt] }, pegarQuantidadeTotalCliente)
 
 }

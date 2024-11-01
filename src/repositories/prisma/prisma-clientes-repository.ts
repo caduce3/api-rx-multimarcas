@@ -180,4 +180,19 @@ export class PrismaClientesRepository implements ClientesRepository {
 
         return cliente
     }
+
+    async pegarQtdTotalCliente(date_init: string, date_finish: string): Promise<{ quantidadeTotalClientes: number }> {
+        const quantidadeTotalClientes = await prisma.clientes.count({
+            where: {
+                dateCreated: {
+                    gte: new Date(date_init),
+                    lte: new Date(date_finish)
+                }
+            }
+        })
+
+        return {
+            quantidadeTotalClientes
+        }
+    }
 }
