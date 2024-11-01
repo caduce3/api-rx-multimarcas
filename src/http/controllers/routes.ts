@@ -63,7 +63,7 @@ export async function appRoutes(app: FastifyInstance) {
     app.get('/endereco/:id', { onRequest: [verifyJwt] }, pegarUnicoEndereco)
 
     //ROTAS PRODUTO
-    app.post('/cadastrar_produto', { onRequest: [verifyJwt, verificarCargo(['ADMINISTRADOR', 'PROPRIETARIO', 'COLABORADOR'])] }, cadastrarProduto)
+    app.post('/cadastrar_produto', { onRequest: [verifyJwt] }, cadastrarProduto)
     app.post('/deletar_produto', { onRequest: [verifyJwt] }, deletarProduto)
     app.put('/atualizar_produto', { onRequest: [verifyJwt] }, atualizarProduto)
     app.post('/pegar_produtos', { onRequest: [verifyJwt] }, pegarProdutos)

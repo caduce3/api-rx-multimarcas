@@ -1,11 +1,5 @@
-import { ClienteAlreadyExistsError } from "@/use-cases/@errors/cliente/cliente-ja-existe";
-import { CpfDeveConterOzeDigitos } from "@/use-cases/@errors/erro-cpf-deve-ter-11-digitos";
-import { CpfInvalido } from "@/use-cases/@errors/erro-cpf-inválido";
-import { DddInvalido } from "@/use-cases/@errors/erro-ddd-invalido";
-import { TelefoneDeveConterOzeDigitos } from "@/use-cases/@errors/erro-telefone-deve-ter-11-digitos";
 import { ErroCadastrarProduto } from "@/use-cases/@errors/produto/erro-cadastrar-produto";
 import { ProdutoJaExiste } from "@/use-cases/@errors/produto/erro-produto-ja-existe";
-import { makeRegisterClienteUseCase } from "@/use-cases/@factories/clientes/make-registrar-cliente-use-case";
 import { makeCadastrarProdutoUseCase } from "@/use-cases/@factories/produtos/make-cadastrar-produto-use-case";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
