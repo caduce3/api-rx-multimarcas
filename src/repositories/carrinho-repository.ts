@@ -19,5 +19,5 @@ export interface CarrinhoRepository {
             Funcionario: true
         }
     }> | null>
-    pegarSomaValorTotalMes(ano: string): Promise<{ mes: string, valorTotal: number }[]>
+    pegarSomaValorTotalMes(date_init: string, date_finish: string): Promise<{ mes: string, valorTotal: number }[]>
 }

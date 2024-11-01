@@ -114,12 +114,13 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
         return carrinho
     }
 
-    async pegarSomaValorTotalMes(ano: string): Promise<{ mes: string; valorTotal: number; }[]> {
+    async pegarSomaValorTotalMes(date_init: string, date_finish: string): Promise<{ mes: string; valorTotal: number; }[]> {
+        
         const carrinhos = await prisma.carrinho.findMany({
             where: {
                 dateCreated: {
-                    gte: new Date(`${ano}-01-01`),
-                    lt: new Date(`${ano}-12-31`)
+                    gte: new Date(date_init),
+                    lte: new Date(date_finish)
                 }
             },
             select: {

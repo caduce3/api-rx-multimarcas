@@ -2,7 +2,8 @@ import { CarrinhoRepository } from "@/repositories/carrinho-repository";
 import { ErroCarregarGrafico } from "../@errors/carrinho/erro-carregar-grafico";
 
 interface PegarSomaValorTotalByMesUseCaseRequest {
-    ano: string;
+    date_init: string;
+    date_finish: string;
 }
 
 interface PegarSomaValorTotalByMesUseCaseResponse {
@@ -18,10 +19,10 @@ export class PegarSomaValorTotalByMesUseCase {
     ) {}
     
     async execute({
-        ano
+        date_init, date_finish
     }: PegarSomaValorTotalByMesUseCaseRequest): Promise<PegarSomaValorTotalByMesUseCaseResponse> {
 
-        const result = await this.carrinhosRepository.pegarSomaValorTotalMes(ano);
+        const result = await this.carrinhosRepository.pegarSomaValorTotalMes(date_init, date_finish);
         if(!result) throw new ErroCarregarGrafico();
 
 

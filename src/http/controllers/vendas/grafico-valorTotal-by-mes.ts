@@ -7,18 +7,19 @@ import { z } from "zod";
 
 export async function pegarValorTotalPorMes(request: FastifyRequest, reply: FastifyReply) {
     const pegarValorTotalPorMesBodySchema = z.object({
-        ano: z.string().min(4).max(4),
+        date_init: z.string(),
+        date_finish: z.string(),
     })
 
     const { 
-        ano
+        date_init, date_finish
     } = pegarValorTotalPorMesBodySchema.parse(request.body)
 
     try {
         const pegarValorTotalPorMesUseCase = makePegarSomaValorTotalByMesUseCase()
 
         const dados = await pegarValorTotalPorMesUseCase.execute({
-            ano
+            date_init, date_finish
         })
 
         return reply.status(200).send({
