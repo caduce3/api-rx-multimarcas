@@ -14,12 +14,12 @@ export async function registrarCliente(request: FastifyRequest, reply: FastifyRe
         telefone: z.string(),
         cpf: z.string(),
         endereco: z.object({
-            rua: z.string().min(4),
-            numero: z.string().min(1),
-            bairro: z.string().min(4),
-            cidade: z.string().min(4),
-            estado: z.string().min(2),
-            cep: z.string().min(5)
+            rua: z.string(),
+            numero: z.string(),
+            bairro: z.string(),
+            cidade: z.string(),
+            estado: z.string(),
+            cep: z.string()
         }).optional()
     })
 
