@@ -113,4 +113,39 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
 
         return carrinho
     }
+
+    async pegarSomaValorTotalMes(ano: string): Promise<{ mes: string; valorTotal: number; }[]> {
+        const carrinhos = await prisma.carrinho.findMany({
+            where: {
+                dateCreated: {
+                    gte: new Date(`${ano}-01-01`),
+                    lt: new Date(`${ano}-12-31`)
+                }
+            },
+            select: {
+                valorTotal: true,
+                dateCreated: true
+            }
+        })
+
+        const somaValorTotalMes = carrinhos.reduce((acc, carrinho) => {
+            const mes = (carrinho.dateCreated.getMonth() + 1).toString().padStart(2, '0')
+            const valorTotal = carrinho.valorTotal
+
+            if (!acc[mes]) {
+                acc[mes] = valorTotal
+            } else {
+                acc[mes] += valorTotal
+            }
+
+            return acc
+        }, {} as { [key: string]: number })
+
+        return Object.entries(somaValorTotalMes).map(([mes, valorTotal]) => {
+            return {
+                mes,
+                valorTotal
+            }
+        })
+    }
 }
