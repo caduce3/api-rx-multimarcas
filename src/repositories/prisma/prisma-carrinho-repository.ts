@@ -142,12 +142,12 @@ export class PrismaCarrinhoRepository implements CarrinhoRepository {
             return acc
         }, {} as { [key: string]: number })
 
-        return Object.entries(somaValorTotalMes).map(([mes, valorTotal]) => {
-            return {
-                mes,
-                valorTotal
-            }
-        })
+        return Object.entries(somaValorTotalMes)
+        .map(([mes, valorTotal]) => ({
+            mes,
+            valorTotal
+        }))
+        .sort((a, b) => parseInt(a.mes) - parseInt(b.mes));
     }
 
     async pegarQtdTotalCarrinho(date_init: string, date_finish: string): Promise<{ quantidadeTotalCarrinhos: number; }> {
